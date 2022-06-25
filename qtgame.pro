@@ -17,12 +17,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
+    mainmap.cpp \
+    map.cpp \
+    none.cpp \
     widget.cpp
 
 HEADERS += \
+    config.h \
+    mainmap.h \
+    map.h \
+    none.h \
     widget.h
 
 FORMS += \
+    mainmap.ui \
+    none.ui \
     widget.ui
 
 TRANSLATIONS += \
@@ -32,3 +41,6 @@ TRANSLATIONS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    res.qrc

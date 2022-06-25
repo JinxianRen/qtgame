@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/grass.png</file>
+        <file>res/stone.png</file>
+        <file>res/infinity-719195.jpg</file>
+    </qresource>
+</RCC>
