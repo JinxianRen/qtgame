@@ -27,13 +27,17 @@ private:
 
 public:
     QTimer Timer;
+    QTimer jumptimer;
     BackGround background;
     player pl;
+    bool leftpress=0;
+    bool rightpress=0;
     void init();
     void gamestart();
     void updateposition();
     void paintEvent(QPaintEvent *event);
     void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 };
 
 #endif // MAINSCREEN_H

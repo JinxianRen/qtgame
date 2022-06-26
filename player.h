@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "qpixmap.h"
+#include "qtimer.h"
 class player
 {
 public:
@@ -11,7 +12,8 @@ public:
     int y;//位置
     int h;
     int w;//大小
-    int v0;//向上的速度
+    double t;//离地时间
+    double v0;//向下的速度
     bool is_jump;//是否跳跃
     int towards;//角色朝向
     QPixmap picture;
@@ -19,6 +21,7 @@ public:
     void right();
     void jump();
     void fall();
+    bool is_ground();
 
 };
 

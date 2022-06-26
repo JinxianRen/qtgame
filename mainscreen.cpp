@@ -24,6 +24,15 @@ void mainscreen::init(){//初始化
 void mainscreen::gamestart(){
     Timer.start();
     connect(&Timer,&QTimer::timeout,[=](){
+            if(!pl.is_ground())pl.fall();
+            if(leftpress){
+                background.mappositionl();
+                pl.left();
+            }
+            if(rightpress){
+                background.mappositionr();
+                pl.right();
+            }
         update();
     });
 }
@@ -38,28 +47,32 @@ void mainscreen::paintEvent(QPaintEvent *event)//绘制事件
 }
 void mainscreen::keyPressEvent(QKeyEvent *event)//按键事件
 {
-        if(event->key() == Qt::Key_A)
-        {
-            background.mappositionl();
-            pl.left();
-
-        }
+    if(event->key()== Qt::Key_A&&event->type())
+    {
+        leftpress=1;
+    }
         if(event->key() == Qt::Key_D)
         {
-            background.mappositionr();
-            pl.right();
-           // startX=(startX+1+image.width ()>width)?startX:startX+1;
+            rightpress=1;
 
         }
-        if(event->key() == Qt::Key_Space)
+        if(event->key() == Qt::Key_Space&&!pl.is_jump)
         {
-           // startY=(startY-1<0)?startY:startY-1;
-
+            pl.jump();
         }
         if(event->key() == Qt::Key_J)
         {
-           // startY=(startY+1+image.height()>height)?startY:startY+1;
-
+        }
+    update();
+}
+void mainscreen::keyReleaseEvent(QKeyEvent *event){
+    if(event->key()== Qt::Key_A&&event->type())
+    {
+        leftpress=0;
+    }
+        if(event->key() == Qt::Key_D)
+        {
+            rightpress=0;
         }
     update();
 }
