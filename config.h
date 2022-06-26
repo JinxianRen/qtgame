@@ -3,8 +3,10 @@
 
 #endif // CONFIG_H
 
-#define BACK_GROUND ":/res/背景.png"
+#define BACK_GROUND ":/res/background.png"
 #define PLAYER_PIC ":/res/grass.png"
+#define TITLE "游戏名称"
+#define GAMEICON ":/res/stone.png"
 
 #define BG_SPEED 2                 //背景移动速度
 #define GAME_TICK 10               //游戏多少毫秒刷新一次
