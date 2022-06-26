@@ -22,7 +22,8 @@ SOURCES += \
     map.cpp \
     none.cpp \
     player.cpp \
-    widget.cpp
+    widget.cpp \
+    dialog.cpp
 
 HEADERS += \
     background.h \
@@ -31,12 +32,14 @@ HEADERS += \
     map.h \
     none.h \
     player.h \
-    widget.h
+    widget.h \
+    dialog.h
 
 FORMS += \
     mainscreen.ui \
     none.ui \
-    widget.ui
+    widget.ui \
+    dialog.ui
 
 TRANSLATIONS += \
     qtgame_zh_CN.ts

@@ -3,5 +3,6 @@
         <file>res/grass.png</file>
         <file>res/stone.png</file>
         <file>res/background.png</file>
+        <file>res/jiemian.png</file>
     </qresource>
 </RCC>
