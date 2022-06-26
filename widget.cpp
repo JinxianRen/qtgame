@@ -1,12 +1,13 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include "config.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
-    setFixedSize(768,512);
+    setFixedSize(XSIZE,YSIZE);
     setWindowTitle("游戏");
     setWindowIcon(QIcon(":/res/stone.png"));
 }
@@ -18,8 +19,8 @@ Widget::~Widget()
 
 void Widget::on_pushButton_clicked()
 {
-    mainmap d;
-    d.exec();
+    mainscreen *d=new mainscreen;
+    d->show();
 }
 
 void Widget::on_pushButton_3_clicked()

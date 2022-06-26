@@ -3,7 +3,8 @@
 
 #include <QWidget>
 #include "none.h"
-#include "mainmap.h"
+#include "mainscreen.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -26,5 +27,7 @@ private slots:
 
 private:
     Ui::Widget *ui;
+
+
 };
 #endif // WIDGET_H

@@ -4,10 +4,13 @@
 #endif // CONFIG_H
 
 #include<math.h>
+#define BACK_GROUND ":/res/背景.png"
+#define BG_SPEED 2//背景移动速度
+#define GAME_TICK 20//游戏多少毫秒刷新一次
 
 #define G 9.8                      //重力加速度
-#define XSIZE 512                  //屏幕大小
-#define YSIZE 384
+#define XSIZE 1024                  //屏幕大小
+#define YSIZE 576
 #define X 64                       //主角起始位置
 #define Y 192
 #define W 32                       //主角的宽和高
@@ -21,5 +24,3 @@
 #define CMD_DOWN 8
 #define CMD_SHOOT 16
 #define CMD_ESC 32
-int life;                          //全局变量，主角共有多少条生命
-int score;                         //全局变量，主角获得的分数

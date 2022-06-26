@@ -16,21 +16,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    background.cpp \
     main.cpp \
-    mainmap.cpp \
-    map.cpp \
+    mainscreen.cpp \
     none.cpp \
     widget.cpp
 
 HEADERS += \
+    background.h \
     config.h \
-    mainmap.h \
-    map.h \
+    mainscreen.h \
     none.h \
     widget.h
 
 FORMS += \
-    mainmap.ui \
+    mainscreen.ui \
     none.ui \
     widget.ui
 
