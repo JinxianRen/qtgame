@@ -19,14 +19,18 @@ SOURCES += \
     background.cpp \
     main.cpp \
     mainscreen.cpp \
+    map.cpp \
     none.cpp \
+    player.cpp \
     widget.cpp
 
 HEADERS += \
     background.h \
     config.h \
     mainscreen.h \
+    map.h \
     none.h \
+    player.h \
     widget.h
 
 FORMS += \

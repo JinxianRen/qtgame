@@ -3,9 +3,12 @@
 
 #include <QWidget>
 #include"qtimer.h"
-#include "background.h"
-#include "config.h"
 #include "QKeyEvent"
+
+#include "background.h"
+#include "player.h"
+
+#include "config.h"
 
 namespace Ui {
 class mainscreen;
@@ -25,7 +28,7 @@ private:
 public:
     QTimer Timer;
     BackGround background;
-    //player player;
+    player pl;
     void init();
     void gamestart();
     void updateposition();

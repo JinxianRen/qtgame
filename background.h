@@ -6,12 +6,15 @@ class BackGround
 {
 public:
     BackGround();
-    void mapposition();
+    void mappositionr();
+    void mappositionl();
 
     QPixmap map1;
     QPixmap map2;
+    QPixmap map3;
     int map1_x;
     int map2_x;
+    int map3_x;
     int m_scroll_speed;
 };
 
