@@ -9,7 +9,7 @@ extern int map[24][24];
 player::player()
 {
   x = X, y = Y, h = H, w = W;
-  hp = INIT_HP;
+  blood = INIT_HP;
   is_jump = 0;
   v0 = 0, t = 0;
   goldnum = 0;
@@ -86,6 +86,14 @@ bool player::wincheck()
 bool player::goldcheck()
 {
     if(map[x/B][y/B]==3)  //到达id为3的方块时获取金币
+    {
+        return true;
+    }
+    return false;
+}
+bool player::dicicheck()//到达id为4的方块时,视为站在地刺上，以每秒10滴血的速度掉血
+{
+    if(map[x/B][y/B]==4)
     {
         return true;
     }

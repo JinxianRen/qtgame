@@ -34,9 +34,10 @@ public:
     BackGround background;
     player pl;
     monster mons[20];
-    QPixmap block1,block2,block3;
+    QPixmap block1,block2,block3,block4;
     QFont font;
     QLabel *label1,*label2;
+    QLabel *labelblood1,*labelblood2;
     bool leftpress=0;
     bool rightpress=0;
     void init();
@@ -48,6 +49,7 @@ public:
     void drawgold();
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
+    void gamelose();
 private slots:
     void on_pushButton_clicked();
 };
