@@ -6,7 +6,6 @@
 #include "QKeyEvent"
 
 #include "background.h"
-#include "map.h"
 #include "player.h"
 
 #include "config.h"

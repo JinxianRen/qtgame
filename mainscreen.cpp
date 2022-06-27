@@ -2,9 +2,8 @@
 #include "ui_mainscreen.h"
 #include "config.h"
 #include "qpainter.h"
-#include "map.h"
 #include "QKeyEvent"
-extern Map map[24][24];
+extern int map[24][24];
 mainscreen::mainscreen(QWidget *parent) : QWidget(parent), ui(new Ui::mainscreen)
 {
   ui->setupUi(this);
@@ -26,16 +25,17 @@ void mainscreen::init()
 void mainscreen::Mapinit(){//地图初始化
     for(int i=0;i<24;i++){
         for(int j=23;j>21;j--){
-            map[i][j].id=1;
+            map[i][j]=1;
         }
     }
     for(int i=0;i<24;i++)
         for(int j=0;j<24;j++){
-            if(i==j)map[i][j].id=1;
+            if(i==j)map[i][j]=1;
         }
-    map[15][15].id=0;
-    for(int i=16;i<24;i++)map[i][15].id=1;
-    map[18][14].id=map[18][13].id=1;
+    map[15][15]=0;
+    for(int i=16;i<24;i++)map[i][15]=1;
+    map[18][14]=map[18][13]=1;
+    map[21][21]=map[20][20]=0;
 
 }
 void mainscreen::gamestart()
@@ -66,7 +66,7 @@ void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
   block1.load(BLOCK1);//地图绘制
     for(int i=0;i<24;i++)
         for(int j=0;j<24;j++){
-            switch(map[i][j].id){
+            switch(map[i][j]){
             case 1:
                 painter.drawPixmap(i*B, j*B,W,W, block1);
                 break;
