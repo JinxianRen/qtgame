@@ -15,7 +15,7 @@ player::player()
 }
 bool player::is_ground()
 {
-          if(map[(x+w/2)/B][(y+h)/B].id!=0)
+          if(map[(x+5)/B][(y+H)/B].id!=0||map[(x+w-5)/B][(y+H)/B].id!=0)
           {
            return 1;
           }
@@ -23,11 +23,12 @@ bool player::is_ground()
 
 }
 void player::right()
-{
+{if(map[x/B+1][(y)/B].id==0)
   x = (x + MOVE_SPEED < XSIZE - w) ? x + MOVE_SPEED : XSIZE - w;
 }
 void player::left()
 {
+    if(map[x/B-1][y/B].id==0)
   x = (x - MOVE_SPEED > 0) ? x - MOVE_SPEED : 0;
 }
 void player::jump()
@@ -39,8 +40,8 @@ void player::jump()
 void player::fall()
 {
   t = sqrt(2 * HIGHT / G) / 14;
-  h=(v0*t+G*pow(t,2)/2>10)?10:v0*t+G*pow(t,2)/2;
-  y+=(int)(h+0.5);
+  h1=(v0*t+G*pow(t,2)/2>10)?10:v0*t+G*pow(t,2)/2;
+  y+=(int)(h1+0.5);
   if(v0>0){
   if(is_ground()){
        y=y/B*B;
@@ -49,7 +50,7 @@ void player::fall()
   }
   }
   else {
-    y += (int)(h + 0.5);
+    y += (int)(h1 + 0.5);
   }
       v0=v0+G*t;
 }

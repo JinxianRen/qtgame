@@ -2,6 +2,7 @@
 #include "ui_mainscreen.h"
 #include "config.h"
 #include "qpainter.h"
+#include "map.h"
 #include "QKeyEvent"
 extern Map map[24][24];
 mainscreen::mainscreen(QWidget *parent) : QWidget(parent), ui(new Ui::mainscreen)
@@ -32,13 +33,17 @@ void mainscreen::Mapinit(){//地图初始化
         for(int j=0;j<24;j++){
             if(i==j)map[i][j].id=1;
         }
+    map[15][15].id=0;
+    for(int i=16;i<24;i++)map[i][15].id=1;
+    map[18][14].id=map[18][13].id=1;
+
 }
 void mainscreen::gamestart()
 {
   Timer.start();
   connect(&Timer, &QTimer::timeout, [=]()
           {
-            if(pl.is_ground())pl.is_jump=1;
+            if(!pl.is_ground())pl.is_jump=1;//这个地方是bug，但是改了就不能跑了很疑惑
             if(pl.is_jump)pl.fall();
             if(leftpress){
                 background.mappositionl();

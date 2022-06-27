@@ -10,7 +10,7 @@
 #define BLOCK1 ":/res/stone.png"
 
 #define BG_SPEED 2                 //背景移动速度
-#define GAME_TICK 10               //游戏多少毫秒刷新一次
+#define GAME_TICK 20               //游戏多少毫秒刷新一次
 
 #define G 9.8                      //重力加速度
 #define XSIZE 768                 //屏幕大小
