@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT       += core gui multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -16,30 +16,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Gamemap.cpp \
     background.cpp \
     main.cpp \
     mainscreen.cpp \
     none.cpp \
     player.cpp \
     widget.cpp \
-    dialog.cpp
+    dialog.cpp \
+    firstwin.cpp \
+    goldbuy.cpp
 
 HEADERS += \
-    Gamemap.h \
     background.h \
     config.h \
     mainscreen.h \
     none.h \
     player.h \
     widget.h \
-    dialog.h
+    dialog.h \
+    firstwin.h \
+    goldbuy.h
 
 FORMS += \
     mainscreen.ui \
     none.ui \
     widget.ui \
-    dialog.ui
+    dialog.ui \
+    firstwin.ui \
+    goldbuy.ui
 
 TRANSLATIONS += \
     qtgame_zh_CN.ts

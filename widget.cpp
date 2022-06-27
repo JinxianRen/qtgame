@@ -22,6 +22,7 @@ Widget::~Widget()
 
 void Widget::on_pushButton_clicked()
 {
+    close();
   mainscreen *d = new mainscreen;
   d->show();
 }

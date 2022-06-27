@@ -1,6 +1,7 @@
 #include "widget.h"
-#include "Gamemap.h"
+#include "map.h"
 #include <QApplication>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

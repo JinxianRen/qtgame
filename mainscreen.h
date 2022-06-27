@@ -2,11 +2,13 @@
 #define MAINSCREEN_H
 
 #include <QWidget>
-#include"qtimer.h"
+#include "qtimer.h"
 #include "QKeyEvent"
-
+#include <QLabel>
+#include <QFont>
 #include "background.h"
 #include "map.h"
+#include "qpainter.h"
 #include "player.h"
 
 #include "config.h"
@@ -31,15 +33,21 @@ public:
     BackGround background;
     player pl;
     QPixmap block1,block2,block3;
+    QFont font;
+    QLabel *label1,*label2;
     bool leftpress=0;
     bool rightpress=0;
     void init();
     void Mapinit();
     void gamestart();
+    void gamewin();
     void updateposition();
     void paintEvent(QPaintEvent *event);
+    void drawgold();
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
+private slots:
+    void on_pushButton_clicked();
 };
 
 #endif // MAINSCREEN_H

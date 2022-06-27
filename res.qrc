@@ -4,5 +4,7 @@
         <file>res/stone.png</file>
         <file>res/background.png</file>
         <file>res/jiemian.png</file>
+        <file>res/star.png</file>
+        <file>res/gold.png</file>
     </qresource>
 </RCC>
