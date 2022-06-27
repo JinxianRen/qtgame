@@ -3,7 +3,7 @@
 #include "config.h"
 #include "qpainter.h"
 #include "QKeyEvent"
-
+extern Map map[24][24];
 mainscreen::mainscreen(QWidget *parent) : QWidget(parent), ui(new Ui::mainscreen)
 {
   ui->setupUi(this);
@@ -20,13 +20,26 @@ void mainscreen::init()
   setFixedSize(XSIZE, YSIZE);
   setWindowTitle(TITLE);
   Timer.setInterval(GAME_TICK);
+  Mapinit();
+}
+void mainscreen::Mapinit(){//地图初始化
+    for(int i=0;i<24;i++){
+        for(int j=23;j>21;j--){
+            map[i][j].id=1;
+        }
+    }
+    for(int i=0;i<24;i++)
+        for(int j=0;j<24;j++){
+            if(i==j)map[i][j].id=1;
+        }
 }
 void mainscreen::gamestart()
 {
   Timer.start();
   connect(&Timer, &QTimer::timeout, [=]()
           {
-            if(!pl.is_ground())pl.fall();
+            if(pl.is_ground())pl.is_jump=1;
+            if(pl.is_jump)pl.fall();
             if(leftpress){
                 background.mappositionl();
                 pl.left();
@@ -44,7 +57,17 @@ void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
   painter.drawPixmap(background.map1_x, 0, background.map1); //绘制背景图
   painter.drawPixmap(background.map2_x, 0, background.map2);
   painter.drawPixmap(background.map3_x, 0, background.map3);
-  painter.drawPixmap(pl.x, pl.y, pl.picture); //绘制角色
+  painter.drawPixmap(pl.x, pl.y, W, H, pl.picture); //绘制角色
+  block1.load(BLOCK1);//地图绘制
+    for(int i=0;i<24;i++)
+        for(int j=0;j<24;j++){
+            switch(map[i][j].id){
+            case 1:
+                painter.drawPixmap(i*B, j*B,W,W, block1);
+                break;
+            }
+        }
+
 }
 void mainscreen::keyPressEvent(QKeyEvent *event) //按键事件
 {

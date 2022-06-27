@@ -1,9 +1,10 @@
 #include "player.h"
-
+#include "mainscreen.h"
 #include "config.h"
+#include "stdio.h"
 
+extern  Map map[24][24];
 #include "qtimer.h"
-#include "qdatetime.h"
 player::player()
 {
   x = X, y = Y, h = H, w = W;
@@ -14,17 +15,12 @@ player::player()
 }
 bool player::is_ground()
 {
-  if (y < 300)
-  {
-    return 0;
-  }
-  else
-  {
-    y = 300;
-    t = 0;
-    is_jump = 0;
-    return 1;
-  }
+          if(map[(x+w/2)/B][(y+h)/B].id!=0)
+          {
+           return 1;
+          }
+      return 0;
+
 }
 void player::right()
 {
@@ -42,8 +38,18 @@ void player::jump()
 }
 void player::fall()
 {
-  t += 0.02;
-  h = v0 * t + G * pow(t, 2) / 2;
-  y += h;
-  v0 = v0 + G * t;
+  t = sqrt(2 * HIGHT / G) / 14;
+  h=(v0*t+G*pow(t,2)/2>10)?10:v0*t+G*pow(t,2)/2;
+  y+=(int)(h+0.5);
+  if(v0>0){
+  if(is_ground()){
+       y=y/B*B;
+       v0=0;
+       is_jump=0;
+  }
+  }
+  else {
+    y += (int)(h + 0.5);
+  }
+      v0=v0+G*t;
 }

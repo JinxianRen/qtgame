@@ -6,10 +6,10 @@
 #include "QKeyEvent"
 
 #include "background.h"
+#include "map.h"
 #include "player.h"
 
 #include "config.h"
-
 namespace Ui {
 class mainscreen;
 }
@@ -30,9 +30,11 @@ public:
     QTimer jumptimer;
     BackGround background;
     player pl;
+    QPixmap block1,block2,block3;
     bool leftpress=0;
     bool rightpress=0;
     void init();
+    void Mapinit();
     void gamestart();
     void updateposition();
     void paintEvent(QPaintEvent *event);
