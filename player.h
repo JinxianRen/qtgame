@@ -9,7 +9,8 @@ public:
     player();
     int hp;
     int x;
-    int y;//位置
+    int y;//界面位置
+    int xr;//实际位置
     int h;
     int w;//大小
     double t;//离地时间

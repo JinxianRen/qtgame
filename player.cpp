@@ -1,4 +1,5 @@
 #include "player.h"
+#include "mainscreen.h"
 
 #include "config.h"
 
@@ -7,6 +8,7 @@
 player::player()
 {
   x = X, y = Y, h = H, w = W;
+  xr=x;
   hp = INIT_HP;
   is_jump = 0;
   v0 = 0, t = 0;
@@ -14,13 +16,13 @@ player::player()
 }
 bool player::is_ground()
 {
-  if (y < 300)
+  if (y<320)
   {
     return 0;
   }
   else
   {
-    y = 300;
+    y=(y / B) * B;
     t = 0;
     is_jump = 0;
     return 1;
@@ -28,10 +30,15 @@ bool player::is_ground()
 }
 void player::right()
 {
-  x = (x + MOVE_SPEED < XSIZE - w) ? x + MOVE_SPEED : XSIZE - w;
+  xr=(x + MOVE_SPEED < w*100) ? x + MOVE_SPEED : w*100;
+  if(x + MOVE_SPEED < XSIZE/2 - w) {
+      x+=MOVE_SPEED;
+  }
+  else {camara_x+=MOVE_SPEED;}
 }
 void player::left()
 {
+  xr = (xr - MOVE_SPEED > 0) ? xr - MOVE_SPEED : 0;
   x = (x - MOVE_SPEED > 0) ? x - MOVE_SPEED : 0;
 }
 void player::jump()
@@ -46,4 +53,5 @@ void player::fall()
   h = v0 * t + G * pow(t, 2) / 2;
   y += h;
   v0 = v0 + G * t;
+
 }

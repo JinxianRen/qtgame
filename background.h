@@ -1,5 +1,5 @@
-#ifndef MAP_H
-#define MAP_H
+#ifndef BACKGROUND_H
+#define BACKGROUND_H
 #include <QPixmap>
 
 class BackGround

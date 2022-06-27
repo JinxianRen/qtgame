@@ -16,20 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Gamemap.cpp \
     background.cpp \
     main.cpp \
     mainscreen.cpp \
-    map.cpp \
     none.cpp \
     player.cpp \
     widget.cpp \
     dialog.cpp
 
 HEADERS += \
+    Gamemap.h \
     background.h \
     config.h \
     mainscreen.h \
-    map.h \
     none.h \
     player.h \
     widget.h \
