@@ -2,10 +2,10 @@
 #define MAP_H
 
 
-class Gamemap
+class Map
 {
 public:
-    Gamemap();
+    Map();
     int id;
 };
 
