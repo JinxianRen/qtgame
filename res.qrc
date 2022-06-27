@@ -6,5 +6,8 @@
         <file>res/jiemian.png</file>
         <file>res/star.png</file>
         <file>res/gold.png</file>
+        <file>res/test.jpg</file>
+        <file>res/monster.png</file>
+        <file>res/player.png</file>
     </qresource>
 </RCC>

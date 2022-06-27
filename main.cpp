@@ -1,5 +1,4 @@
 #include "widget.h"
-#include "map.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

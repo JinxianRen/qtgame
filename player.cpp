@@ -35,6 +35,7 @@ bool player::left_touch(){
 bool player::head_touch(){
    if( map[(x+5)/B][(y)/B]==1||map[(x+w-5)/B][(y)/B]==1)
        return 1;
+   else return 0;
 }
 void player::right()
 {
@@ -84,7 +85,7 @@ bool player::wincheck()
 }
 bool player::goldcheck()
 {
-    if(map[x/B][y/B]==3)  //到达id为2的方块时获胜
+    if(map[x/B][y/B]==3)  //到达id为3的方块时获取金币
     {
         return true;
     }

@@ -7,9 +7,10 @@
 #include <QLabel>
 #include <QFont>
 #include "background.h"
-#include "map.h"
-#include "qpainter.h"
 #include "player.h"
+#include "monster.h"
+
+#include "qpainter.h"
 
 #include "config.h"
 namespace Ui {
@@ -32,6 +33,7 @@ public:
     QTimer jumptimer;
     BackGround background;
     player pl;
+    monster mons[20];
     QPixmap block1,block2,block3;
     QFont font;
     QLabel *label1,*label2;

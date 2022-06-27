@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "player.h"
+#include <QLabel>
+#include <QFont>
 
 namespace Ui {
 class goldbuy;
@@ -15,7 +17,11 @@ class goldbuy : public QDialog
 public:
     explicit goldbuy(player& play,QWidget *parent = 0);
     ~goldbuy();
-    player pl;
+    player &pl;
+    int nowgold();
+    void drawgold();
+    QFont font;
+    QLabel *label1,*label2;
 
 private slots:
     void on_pushButton_clicked();

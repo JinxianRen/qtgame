@@ -16,15 +16,17 @@ public:
     double t;//离地时间
     double v0;//向下的速度
     bool is_jump;//是否跳跃
-    int towards;//角色朝向
-    int goldnum;
+    int is_right;//角色朝向
+    int goldnum;//金币数量
+    int allgoldnum;
+    int picnumber;//现在是动画第几帧
     QPixmap picture;
-    void left();
-    void right();
+    virtual void left();
+    virtual void right();
     void jump();
     void fall();
-    bool left_touch();
-    bool right_touch();
+    virtual bool left_touch();
+    virtual bool right_touch();
     bool head_touch();
     bool is_ground();
     bool wincheck();
