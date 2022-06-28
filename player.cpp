@@ -77,34 +77,29 @@ void player::fall()
       }
           v0=v0+G*t;
 }
-bool player::wincheck()
+bool player::wincheck()//到达id为2的方块时获胜
 {
-    if(map[x/B][y/B]==2||map[(x+W)/B][y/B]==2)  //到达id为2的方块时获胜
-    {
-        return true;
-    }
+    if(map[x/B][y/B]==2||map[(x+W)/B][y/B]==2)return true;
     return false;
 }
-int player::goldcheck()
+int player::goldcheck()//到达id为3的方块时获取金币
 {
-    if(map[x+5/B][y/B]==3)  //到达id为3的方块时获取金币
+    if(map[x/B][y/B]==3)
     {
-        map[x+5/B][y/B]=0;
+        map[x/B][y/B]=0;
         return 1;
     }
     else if(map[(x+W-5)/B][y/B]==3)
     {
         map[(x+W-5)/B][y/B]=0;
-        return 2;
+        return 1;
     }
     return 0;
 }
-bool player::dicicheck()//到达id为4的方块时,视为站在地刺上，以每秒10滴血的速度掉血
+bool player::dicicheck()//到达id为4的方块时,视为站在地刺上，受伤
 {
-    if(map[x/B][y/B]==4||map[(x+W)/B][y/B]==4)
-    {
-        return true;
-    }
+    if(map[x/B][y/B]==4||map[(x+W)/B][y/B]==4)return true;
+
     return false;
 }
 bool player::touch(player mons){
