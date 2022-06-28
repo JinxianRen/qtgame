@@ -13,6 +13,8 @@
 #include "qpainter.h"
 #include <QString>
 #include "config.h"
+#include "monster_bullet.h"
+
 namespace Ui {
 class mainscreen;
 }
@@ -33,6 +35,7 @@ public:
     BackGround background;
     player pl;
     monster mons[20];
+    monster_bullet mons_bullet[20];
     QPixmap block1,block2,block3,block4;
     QFont font;
     QLabel *label1,*label2;

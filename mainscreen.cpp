@@ -5,10 +5,12 @@
 
 #include "qpainter.h"
 #include "QKeyEvent"
-
+#include "bullet.h"
+#include <QListIterator>
 #include "firstwin.h"
 #include "goldbuy.h"
 #include "youlose.h"
+#include <QDebug>
 
 int map[24][24];
 
@@ -70,6 +72,8 @@ void mainscreen::Mapinit(){//地图初始化
 
     mons[0].is_alive=1,mons[0].x=4*B,mons[0].y=0;
     mons[1].is_alive=1,mons[1].x=4*B,mons[1].y=20*B;
+
+    mons_bullet[0].is_alive=1,mons_bullet[0].x=4*B,mons_bullet[0].y=12*B;
 }
 
 void mainscreen::gamestart()//主循环
@@ -96,13 +100,48 @@ void mainscreen::gamestart()//主循环
             }
             for (int i=0;i<MSTRNUM;i++){//怪物行为
                 if(mons[i].is_alive){
-                if(!mons[i].is_ground())mons[i].fall();
-                else mons[i].move();
-                if(pl.touch(mons[i]))pl.injure();
+                    if(!mons[i].is_ground())
+                        mons[i].fall();
+                    else
+                        mons[i].move();
+                    if(pl.touch(mons[i]))
+                        pl.injure();
+                }
+            }
+            for(int i=0;i<MSTRNUM_BULLET;i++)
+            {
+                if(mons_bullet[i].is_alive)
+                {
+                        if(!mons_bullet[i].is_ground())
+                            mons_bullet[i].fall();
+                        else
+                            mons_bullet[i].move();
+                        if(pl.touch(mons_bullet[i]))
+                            pl.injure();
+                        if(begin==true && updatenum % BULLET_TIME==0) //生成子弹
+                        {
+                            mons_bullet[i].newbullet();
+                        }
+                        mons_bullet[i].bulletmove();
+                        if(begin==true)
+                        {
+                            for(int j=0;j<30;j++)
+                            {
+                                if(mons_bullet[i].biu[j].is_alive==1)
+                                {
+                                    //qDebug() << mons_bullet[i].biu[j].x<< mons_bullet[i].biu[j].y;
+                                    if(pl.touch(mons_bullet[i].biu[j]))
+                                    {
+                                        mons_bullet[i].biu[j].is_alive=0;
+                                        pl.bulletinjure();
+                                    }
+                                }
+                            }
+                        }
                 }
             }
             if(pl.hittimer!=0)pl.hittimer++;
-            if(pl.hittimer>50)pl.hittimer=0;//受伤无敌时间
+            if(pl.hittimer>HIT_TIME)pl.hittimer=0;//受伤无敌时间
             if(!pl.is_ground())pl.is_jump=1;//运动部分
             if(pl.is_jump)pl.fall();
             if(leftpress){
@@ -139,7 +178,7 @@ void mainscreen::gamestart()//主循环
               {
                    pl.injure();
               }
-            if(pl.blood == 0)
+            if(pl.blood <= 0)
                         {
                gamelose();
                close();
@@ -176,7 +215,30 @@ void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
                 painter.drawPixmap(i*B, j*B,W,W, block4);
                 break;
             }
-  for(int i=0;i<MSTRNUM;i++)if(mons[i].is_alive)painter.drawPixmap(mons[i].x, mons[i].y, W, H, mons[i].picture);
+  for(int i=0;i<MSTRNUM;i++)
+  {
+      if(mons[i].is_alive)
+      {
+          painter.drawPixmap(mons[i].x, mons[i].y, W, H, mons[i].picture);
+      }
+  }
+  for(int i=0;i<MSTRNUM_BULLET;i++)
+  {
+      if(mons_bullet[i].is_alive)
+      {
+          painter.drawPixmap(mons_bullet[i].x, mons_bullet[i].y, W, H, mons_bullet[i].picture);
+          //qDebug() << mons_bullet[i].x<< mons_bullet[i].y;
+          for(int j=0;j<30;j++)
+          {
+              if(mons_bullet[i].biu[j].is_alive==1)
+              {
+                   painter.drawPixmap(mons_bullet[i].biu[j].x, mons_bullet[i].biu[j].y, W, H, mons_bullet[i].biu[j].picture);
+                   //qDebug() << mons_bullet[i].biu[j].x<< mons_bullet[i].biu[j].y;
+              }
+          }
+      }
+
+  }
 }
 
 void mainscreen::drawgold()

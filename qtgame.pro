@@ -28,7 +28,9 @@ SOURCES += \
     goldbuy.cpp \
     youlose.cpp \
     mainscreen_second.cpp \
-    lastwin.cpp
+    lastwin.cpp \
+    monster_bullet.cpp \
+    bullet.cpp
 
 HEADERS += \
     background.h \
@@ -43,7 +45,9 @@ HEADERS += \
     goldbuy.h \
     youlose.h \
     mainscreen_second.h \
-    lastwin.h
+    lastwin.h \
+    monster_bullet.h \
+    bullet.h
 
 FORMS += \
     mainscreen.ui \

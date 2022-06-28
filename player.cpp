@@ -101,17 +101,32 @@ bool player::dicicheck()//到达id为4的方块时,视为站在地刺上，受�
     if(map[x/B][y/B]==4||map[(x+W)/B][y/B]==4)return true;
     return false;
 }
-bool player::touch(player mons){
-    if(x+5>mons.x&&x+5<mons.x+W&&y+5>mons.y&&y+5<mons.y+H)return 1;
-    if(x+W-5>mons.x&&x+W-5<mons.x+W&&y+5>mons.y&&y+5<mons.y+H)return 1;
-    if(x+5>mons.x&&x+5<mons.x+W&&y+H-5>mons.y&&y+H-5<mons.y+H)return 1;
-    if(x+W-5>mons.x&&x+W-5<mons.x+W&&y+H-5>mons.y&&y+H-5<mons.y+H)return 1;
+bool player::touch(player mons)
+{
+    if(x+5>mons.x&&x+5<mons.x+W&&y+5>mons.y&&y+5<mons.y+H)
+        return 1;
+    if(x+W-5>mons.x&&x+W-5<mons.x+W&&y+5>mons.y&&y+5<mons.y+H)
+        return 1;
+    if(x+5>mons.x&&x+5<mons.x+W&&y+H-5>mons.y&&y+H-5<mons.y+H)
+        return 1;
+    if(x+W-5>mons.x&&x+W-5<mons.x+W&&y+H-5>mons.y&&y+H-5<mons.y+H)
+        return 1;
     return 0;
 }
-void player::injure(){
-    qDebug("%dhittimer:",hittimer);
+void player::injure()
+{
     if(hittimer==0){
         blood-=10;
         hittimer++;
     }
 }
+void player::bulletinjure()
+{
+    if(hittimer==0){
+        blood-=5;
+        hittimer++;
+    }
+}
+
+
+

@@ -27,6 +27,7 @@ public:
     void jump();
     void fall();
     void injure();
+    void bulletinjure();
     virtual bool left_touch();
     virtual bool right_touch();
     bool touch(player mons);
