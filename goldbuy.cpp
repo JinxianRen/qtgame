@@ -7,6 +7,8 @@ goldbuy::goldbuy(player& play,QWidget *parent) :
     ui(new Ui::goldbuy)
 {
     ui->setupUi(this);
+    setWindowTitle(TITLE);
+    setWindowIcon(QIcon(GAMEICON));
     drawgold();
 }
 
@@ -58,6 +60,7 @@ void goldbuy::on_pushButton_2_clicked()
             pl.blood=100;
     }
 }
+
 void goldbuy::on_pushButton_3_clicked()
 {
     //假设买它需要花5个金币，买了可以无敌3s

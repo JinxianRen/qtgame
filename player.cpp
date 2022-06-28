@@ -99,7 +99,6 @@ int player::goldcheck()//到达id为3的方块时获取金币
 bool player::dicicheck()//到达id为4的方块时,视为站在地刺上，受伤
 {
     if(map[x/B][y/B]==4||map[(x+W)/B][y/B]==4)return true;
-
     return false;
 }
 bool player::touch(player mons){

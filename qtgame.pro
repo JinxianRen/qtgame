@@ -26,7 +26,9 @@ SOURCES += \
     dialog.cpp \
     firstwin.cpp \
     goldbuy.cpp \
-    youlose.cpp
+    youlose.cpp \
+    mainscreen_second.cpp \
+    lastwin.cpp
 
 HEADERS += \
     background.h \
@@ -39,7 +41,9 @@ HEADERS += \
     dialog.h \
     firstwin.h \
     goldbuy.h \
-    youlose.h
+    youlose.h \
+    mainscreen_second.h \
+    lastwin.h
 
 FORMS += \
     mainscreen.ui \
@@ -48,7 +52,9 @@ FORMS += \
     dialog.ui \
     firstwin.ui \
     goldbuy.ui \
-    youlose.ui
+    youlose.ui \
+    mainscreen_second.ui \
+    lastwin.ui
 
 TRANSLATIONS += \
     qtgame_zh_CN.ts

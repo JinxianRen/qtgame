@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QLabel>
 #include <QFont>
+#include <QString>
 
 namespace Ui {
 class youlose;
@@ -14,11 +15,13 @@ class youlose : public QDialog
     Q_OBJECT
 
 public:
-    explicit youlose(int allgoldnum_,QWidget *parent = 0);
+    explicit youlose(int allgoldnum_,double time_,QWidget *parent = 0);
     ~youlose();
     QFont font;
     QLabel *label1,*label2;
+    QString print;
     int allgoldnum;
+    double time;
     void drawgold();
 
 

@@ -36,8 +36,10 @@ void Widget::on_pushButton_3_clicked()
 
 void Widget::on_pushButton_2_clicked()
 {
-  none d;
-  d.exec();
+  none *d= new none;
+  d->setAttribute(Qt::WA_DeleteOnClose, true);
+  d->show();
+  close();
 }
 
 void Widget::on_pushButton_4_clicked()
