@@ -30,7 +30,6 @@ private:
 
 public:
     QTimer Timer;
-    QTimer jumptimer;
     BackGround background;
     player pl;
     monster mons[20];

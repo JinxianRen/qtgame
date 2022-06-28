@@ -75,13 +75,17 @@ void mainscreen::gamestart()//主循环
           {//每帧执行任务
             labelblood1->setText(QString::number(pl.blood));
             label1->setText(QString::number(pl.goldnum));
-            if(!pl.is_ground())pl.is_jump=1;
-            for (int i=0;i<MSTRNUM;i++){
+
+            for (int i=0;i<MSTRNUM;i++){//怪物行为
                 if(mons[i].is_alive){
                 if(!mons[i].is_ground())mons[i].fall();
                 else mons[i].move();
+                if(pl.touch(mons[i]))pl.injure();
                 }
             }
+            if(pl.hittimer!=0)pl.hittimer++;
+            if(pl.hittimer>50)pl.hittimer=0;//受伤无敌时间
+            if(!pl.is_ground())pl.is_jump=1;//运动部分
             if(pl.is_jump)pl.fall();
             if(leftpress){
                 background.mappositionl();
@@ -91,21 +95,22 @@ void mainscreen::gamestart()//主循环
                 background.mappositionr();
                 pl.right();
             }
-            if(pl.wincheck())
+
+            if(pl.wincheck())//胜利检查
             {
                 gamewin();
                 close();
                 Timer.stop();
             }
-            if(pl.goldcheck())
+            if(pl.goldcheck())//金币数获取
             {
                 pl.goldnum++;
                 pl.allgoldnum++;
                 map[pl.x/B][pl.y/B]=0;
             }
-            if(pl.dicicheck())
+            if(pl.dicicheck())//受伤及死亡
               {
-                   pl.blood-=2;
+                   pl.injure();
               }
             if(pl.blood == 0)
                         {
@@ -113,7 +118,8 @@ void mainscreen::gamestart()//主循环
                close();
                Timer.stop();
                         }
-        update(); });
+        update(); //绘制
+  });
 }
 
 void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
@@ -217,7 +223,7 @@ void mainscreen::gamewin()//胜利界面
     win->show();
 }
 
-void mainscreen::on_pushButton_clicked()//金币商店part
+void mainscreen::on_pushButton_clicked()//金币商店
 {
     goldbuy *buy= new goldbuy(pl);
     buy->show();
@@ -225,7 +231,7 @@ void mainscreen::on_pushButton_clicked()//金币商店part
         update();
 }
 
-void mainscreen::gamelose()  //失败界面待补充，暂时先用成功界面替着
+void mainscreen::gamelose()  //失败界面
 {
     youlose *lose= new youlose(pl.allgoldnum);
     lose->show();

@@ -12,6 +12,7 @@ player::player()
   blood = INIT_HP;
   is_jump = 0;
   v0 = 0, t = 0;
+  hittimer=0;
   goldnum = 0;
   picture.load(PLAYER_PIC);
 }
@@ -77,7 +78,7 @@ void player::fall()
 }
 bool player::wincheck()
 {
-    if(map[x/B][y/B]==2)  //到达id为2的方块时获胜
+    if(map[x/B][y/B]==2||map[(x+W)/B][y/B]==2)  //到达id为2的方块时获胜
     {
         return true;
     }
@@ -85,7 +86,7 @@ bool player::wincheck()
 }
 bool player::goldcheck()
 {
-    if(map[x/B][y/B]==3)  //到达id为3的方块时获取金币
+    if(map[x/B][y/B]==3||map[(x+W)/B][y/B]==3)  //到达id为3的方块时获取金币
     {
         return true;
     }
@@ -93,9 +94,23 @@ bool player::goldcheck()
 }
 bool player::dicicheck()//到达id为4的方块时,视为站在地刺上，以每秒10滴血的速度掉血
 {
-    if(map[x/B][y/B]==4)
+    if(map[x/B][y/B]==4||map[(x+W)/B][y/B]==4)
     {
         return true;
     }
     return false;
+}
+bool player::touch(player mons){
+    if(x+5>mons.x&&x+5<mons.x+W&&y+5>mons.y&&y+5<mons.y+H)return 1;
+    if(x+W-5>mons.x&&x+W-5<mons.x+W&&y+5>mons.y&&y+5<mons.y+H)return 1;
+    if(x+5>mons.x&&x+5<mons.x+W&&y+H-5>mons.y&&y+H-5<mons.y+H)return 1;
+    if(x+W-5>mons.x&&x+W-5<mons.x+W&&y+H-5>mons.y&&y+H-5<mons.y+H)return 1;
+    return 0;
+}
+void player::injure(){
+    qDebug("%dhittimer:",hittimer);
+    if(hittimer==0){
+        blood-=10;
+        hittimer++;
+    }
 }
