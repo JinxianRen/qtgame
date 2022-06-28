@@ -75,13 +75,17 @@ void mainscreen::gamestart()//主循环
           {//每帧执行任务
             labelblood1->setText(QString::number(pl.blood));
             label1->setText(QString::number(pl.goldnum));
-            if(!pl.is_ground())pl.is_jump=1;
-            for (int i=0;i<MSTRNUM;i++){
+
+            for (int i=0;i<MSTRNUM;i++){//怪物行为
                 if(mons[i].is_alive){
                 if(!mons[i].is_ground())mons[i].fall();
                 else mons[i].move();
+                if(pl.touch(mons[i]))pl.injure();
                 }
             }
+            if(pl.hittimer!=0)pl.hittimer++;
+            if(pl.hittimer>50)pl.hittimer=0;//受伤无敌时间
+            if(!pl.is_ground())pl.is_jump=1;//运动部分
             if(pl.is_jump)pl.fall();
             if(leftpress){
                 background.mappositionl();
@@ -91,29 +95,27 @@ void mainscreen::gamestart()//主循环
                 background.mappositionr();
                 pl.right();
             }
-            if(pl.wincheck())
+
+            if(pl.wincheck())//胜利检查
             {
                 gamewin();
                 close();
                 Timer.stop();
             }
-            if(pl.goldcheck())
+            if(pl.goldcheck())//金币数获取
             {
                 pl.goldnum++;
                 pl.allgoldnum++;
-                map[pl.x/B][pl.y/B]=0;
             }
-            if(pl.dicicheck())
-              {
-                   pl.blood-=2;
-              }
-            if(pl.blood == 0)
-                        {
+            if(pl.dicicheck())pl.injure();//受伤死亡
+            if(pl.blood == 0)//死亡
+            {
                gamelose();
                close();
                Timer.stop();
-                        }
-        update(); });
+             }
+        update(); //绘制
+  });
 }
 
 void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
@@ -122,7 +124,6 @@ void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
   painter.drawPixmap(background.map1_x, 0,XSIZE,YSIZE, background.map1); //绘制背景图
   painter.drawPixmap(background.map2_x, 0,XSIZE,YSIZE, background.map2);
   painter.drawPixmap(background.map3_x, 0,XSIZE,YSIZE, background.map3);
-  painter.drawPixmap(pl.x, pl.y, W, H, pl.picture); //绘制角色
   block1.load(BLOCK1);//地图绘制
   block2.load(BLOCK2);
   block3.load(BLOCK3);
@@ -144,6 +145,7 @@ void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
                 break;
             }
   for(int i=0;i<MSTRNUM;i++)if(mons[i].is_alive)painter.drawPixmap(mons[i].x, mons[i].y, W, H, mons[i].picture);
+  painter.drawPixmap(pl.x, pl.y, W, H, pl.picture); //绘制角色
 }
 
 void mainscreen::drawgold()//金币label
@@ -214,19 +216,21 @@ void mainscreen::keyReleaseEvent(QKeyEvent *event)//松开按键事件
 void mainscreen::gamewin()//胜利界面
 {
     firstwin *win= new firstwin(pl.allgoldnum);
+    win->setAttribute(Qt::WA_DeleteOnClose, true);
     win->show();
 }
 
-void mainscreen::on_pushButton_clicked()//金币商店part
+void mainscreen::on_pushButton_clicked()//金币商店
 {
     goldbuy *buy= new goldbuy(pl);
     buy->show();
     pl.goldnum=buy->nowgold();
-        update();
+    update();
 }
 
-void mainscreen::gamelose()  //失败界面待补充，暂时先用成功界面替着
+void mainscreen::gamelose()  //失败界面
 {
     youlose *lose= new youlose(pl.allgoldnum);
+    lose->setAttribute(Qt::WA_DeleteOnClose, true);
     lose->show();
 }

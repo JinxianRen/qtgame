@@ -22,14 +22,16 @@ Widget::~Widget()
 
 void Widget::on_pushButton_clicked()
 {
-    close();
   mainscreen *d = new mainscreen;
+  d->setAttribute(Qt::WA_DeleteOnClose, true);
   d->show();
+  close();
 }
 
 void Widget::on_pushButton_3_clicked()
 {
   close();
+  delete ui;
 }
 
 void Widget::on_pushButton_2_clicked()
@@ -40,7 +42,8 @@ void Widget::on_pushButton_2_clicked()
 
 void Widget::on_pushButton_4_clicked()
 {
-    close();
     Dialog *dlg= new Dialog;
+    dlg->setAttribute(Qt::WA_DeleteOnClose, true);
     dlg->show();
+    close();
 }

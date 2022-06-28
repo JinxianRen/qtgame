@@ -40,14 +40,17 @@ void youlose::drawgold()
 
 void youlose::on_pushButton_clicked()
 {
-    close();
+
     mainscreen *d = new mainscreen;
+    d->setAttribute(Qt::WA_DeleteOnClose, true);
     d->show();
+    close();
 }
 
 void youlose::on_pushButton_2_clicked()
 {
-    close();
     Widget *w = new Widget;
+    w->setAttribute(Qt::WA_DeleteOnClose, true);
     w->show();
+    close();
 }

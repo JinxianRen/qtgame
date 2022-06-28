@@ -22,16 +22,20 @@ firstwin::~firstwin()
 
 void firstwin::on_pushButton_2_clicked()
 {
-    close();
+
     Widget *w = new Widget;
+    w->setAttribute(Qt::WA_DeleteOnClose, true);
     w->show();
+    close();
 }
 
 void firstwin::on_pushButton_clicked()
 {
-     close();
+
      mainscreen *d = new mainscreen;
+     d->setAttribute(Qt::WA_DeleteOnClose, true);
      d->show();
+     close();
 }
 
 void firstwin::drawgold()
