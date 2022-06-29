@@ -14,8 +14,9 @@ class firstwin : public QDialog
     Q_OBJECT
 
 public:
-    explicit firstwin(int allgoldnum_,double time_,QWidget *parent = 0);
+    explicit firstwin(int nowgoldnum_,int allgoldnum_,double time_,QWidget *parent = 0);
     ~firstwin();
+    int nowgoldnum;
     int allgoldnum;
     double time;
     QString print;

@@ -9,5 +9,15 @@
         <file>res/test.jpg</file>
         <file>res/monster.png</file>
         <file>res/player.png</file>
+        <file>res/3.png</file>
+        <file>res/background2.png</file>
+        <file>res/stone20.png</file>
+        <file>res/stone21.png</file>
+        <file>res/stone22.png</file>
+        <file>res/food.png</file>
+        <file>res/player2.png</file>
+        <file>res/monster2.png</file>
+        <file>res/1.png</file>
+        <file>res/2.png</file>
     </qresource>
 </RCC>

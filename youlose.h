@@ -15,12 +15,13 @@ class youlose : public QDialog
     Q_OBJECT
 
 public:
-    explicit youlose(int allgoldnum_,double time_,QWidget *parent = 0);
+    explicit youlose(int allgoldnum_,double time_,int guan_,QWidget *parent = 0);
     ~youlose();
     QFont font;
     QLabel *label1,*label2;
     QString print;
     int allgoldnum;
+    int guan;
     double time;
     void drawgold();
 

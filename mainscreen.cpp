@@ -11,12 +11,13 @@
 #include "goldbuy.h"
 #include "youlose.h"
 #include <QDebug>
-
-int map[24][24];
+#include <QIcon>
+extern int map[24][24];
 
 mainscreen::mainscreen(QWidget *parent) : QWidget(parent), ui(new Ui::mainscreen)
 {
   ui->setupUi(this);
+  memset(map,0,sizeof(map));
   setWindowTitle(TITLE);
   setWindowIcon(QIcon(GAMEICON));
   init();
@@ -63,17 +64,16 @@ void mainscreen::Mapinit(){//地图初始化
     map[13][4]=map[22][4]=map[4][3]=map[5][3]=
     map[11][3]=map[10][2]=map[9][1]=map[9][0]=1;
 
-    map[17][16]=map[18][16]=0;
     map[1][1]=2;
     map[1][17]=map[10][15]=map[21][15]=map[15][12]=
     map[2][10]=map[11][6]=map[2][4]=map[23][4]=
     map[16][3]=3;
     map[15][20]=4;
 
-    mons[0].is_alive=1,mons[0].x=4*B,mons[0].y=0;
-    mons[1].is_alive=1,mons[1].x=4*B,mons[1].y=20*B;
+    mons[0].is_alive=1,mons[0].x=4*B0,mons[0].y=0;
+    mons[1].is_alive=1,mons[1].x=4*B0,mons[1].y=20*B0;
 
-    mons_bullet[0].is_alive=1,mons_bullet[0].x=4*B,mons_bullet[0].y=12*B;
+    mons_bullet[0].is_alive=1,mons_bullet[0].x=4*B0,mons_bullet[0].y=12*B0;
 }
 
 void mainscreen::gamestart()//主循环
@@ -84,6 +84,7 @@ void mainscreen::gamestart()//主循环
             printblood="目前血量：";
             printblood+=QString::number(pl.blood);
             labelblood2->setText(printblood);
+            labelblood2->adjustSize();
             printtime="用时：";
             printtime+=QString::number(time,'lf',2).append('s');
             labeltime2->setText(printtime);
@@ -91,6 +92,7 @@ void mainscreen::gamestart()//主循环
             print="金币数：";
             print+=QString::number(pl.goldnum);
             label2->setText(print);
+            label2->adjustSize();
 
             if(begin==true)
             {
@@ -141,7 +143,7 @@ void mainscreen::gamestart()//主循环
                 }
             }
             if(pl.hittimer!=0)pl.hittimer++;
-            if(pl.hittimer>HIT_TIME)pl.hittimer=0;//受伤无敌时间
+            if(pl.hittimer>20)pl.hittimer=0;//受伤无敌时间
             if(!pl.is_ground())pl.is_jump=1;//运动部分
             if(pl.is_jump)pl.fall();
             if(leftpress){
@@ -166,13 +168,13 @@ void mainscreen::gamestart()//主循环
             {
                 pl.goldnum++;
                 pl.allgoldnum++;
-                map[pl.x/B][pl.y/B]=0;
+                map[pl.x/B0][pl.y/B0]=0;
             }
             if(pl.goldcheck()==2)//金币数获取
             {
                 pl.goldnum++;
                 pl.allgoldnum++;
-                map[(pl.x+W)/B][pl.y/B]=0;
+                map[(pl.x+W)/B0][pl.y/B0]=0;
             }
             if(pl.dicicheck())//受伤及死亡
               {
@@ -191,9 +193,9 @@ void mainscreen::gamestart()//主循环
 void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
 {
   QPainter painter(this);
-  painter.drawPixmap(background.map1_x, 0,XSIZE,YSIZE, background.map1); //绘制背景图
-  painter.drawPixmap(background.map2_x, 0,XSIZE,YSIZE, background.map2);
-  painter.drawPixmap(background.map3_x, 0,XSIZE,YSIZE, background.map3);
+  painter.drawPixmap(0, 0,XSIZE,YSIZE, background.map1); //绘制背景图
+  painter.drawPixmap(0, 0,XSIZE,YSIZE, background.map2);
+  painter.drawPixmap(0, 0,XSIZE,YSIZE, background.map3);
   painter.drawPixmap(pl.x, pl.y, W, H, pl.picture); //绘制角色
   block1.load(BLOCK1);//地图绘制
   block2.load(BLOCK2);
@@ -203,16 +205,16 @@ void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
         for(int j=0;j<24;j++)
             switch(map[i][j]){
             case 1:
-                painter.drawPixmap(i*B, j*B,W,W, block1);
+                painter.drawPixmap(i*B0, j*B0,W,W, block1);
                 break;
             case 2:
-                painter.drawPixmap(i*B, j*B,W,W, block2);
+                painter.drawPixmap(i*B0, j*B0,W,W, block2);
                 break;
             case 3:
-                painter.drawPixmap(i*B, j*B,W,W, block3);
+                painter.drawPixmap(i*B0, j*B0,W,W, block3);
                 break;
             case 4:
-                painter.drawPixmap(i*B, j*B,W,W, block4);
+                painter.drawPixmap(i*B0, j*B0,W,W, block4);
                 break;
             }
   for(int i=0;i<MSTRNUM;i++)
@@ -248,7 +250,7 @@ void mainscreen::drawgold()
     font.setFamily("SimHei");//字体
     font.setPointSize(10);//文字大小
 
-    print="金币数：";
+    print="可用金币数：";
     print+=QString::number(pl.goldnum);
     label2->setText(print);
     label2->setStyleSheet("color: black");
@@ -289,9 +291,6 @@ void mainscreen::keyPressEvent(QKeyEvent *event) //按键事件
   {
     pl.jump();
   }
-  if (event->key() == Qt::Key_J) //可能会有的攻击
-  {
-  }
   update();
 }
 
@@ -310,7 +309,7 @@ void mainscreen::keyReleaseEvent(QKeyEvent *event)//松开按键事件
 
 void mainscreen::gamewin()//胜利界面
 {
-    firstwin *win= new firstwin(pl.allgoldnum,time);
+    firstwin *win= new firstwin(pl.goldnum,pl.allgoldnum,time);
     win->setAttribute(Qt::WA_DeleteOnClose, true);
     win->show();
 }
@@ -326,7 +325,7 @@ void mainscreen::on_pushButton_clicked()//金币商店
 
 void mainscreen::gamelose()  //失败界面
 {
-    youlose *lose= new youlose(pl.allgoldnum,time);
+    youlose *lose= new youlose(pl.allgoldnum,time,1);
     lose->setAttribute(Qt::WA_DeleteOnClose, true);
     lose->show();
 }

@@ -6,6 +6,7 @@ class BackGround
 {
 public:
   BackGround();
+  BackGround(int num);
   void mappositionr();
   void mappositionl();
 

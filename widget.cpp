@@ -7,11 +7,10 @@ Widget::Widget(QWidget *parent)
     : QWidget(parent), ui(new Ui::Widget)
 {
   ui->setupUi(this);
-  setFixedSize(XSIZE, YSIZE);
   setWindowTitle(TITLE);
   setWindowIcon(QIcon(GAMEICON));
-  int width = 1032;
-  int height = 736;
+  int width = 864;
+  int height = 576;
   this->setFixedSize(width,height);//设置窗体固定大小
 }
 

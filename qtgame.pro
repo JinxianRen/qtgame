@@ -19,6 +19,7 @@ SOURCES += \
     background.cpp \
     main.cpp \
     mainscreen.cpp \
+    mainscreen_second.cpp \
     monster.cpp \
     none.cpp \
     player.cpp \
@@ -27,7 +28,6 @@ SOURCES += \
     firstwin.cpp \
     goldbuy.cpp \
     youlose.cpp \
-    mainscreen_second.cpp \
     lastwin.cpp \
     monster_bullet.cpp \
     bullet.cpp
@@ -36,6 +36,7 @@ HEADERS += \
     background.h \
     config.h \
     mainscreen.h \
+    mainscreen_second.h \
     monster.h \
     none.h \
     player.h \
@@ -44,20 +45,19 @@ HEADERS += \
     firstwin.h \
     goldbuy.h \
     youlose.h \
-    mainscreen_second.h \
     lastwin.h \
     monster_bullet.h \
     bullet.h
 
 FORMS += \
     mainscreen.ui \
+    mainscreen_second.ui \
     none.ui \
     widget.ui \
     dialog.ui \
     firstwin.ui \
     goldbuy.ui \
     youlose.ui \
-    mainscreen_second.ui \
     lastwin.ui
 
 TRANSLATIONS += \

@@ -20,6 +20,7 @@ public:
     bool is_right;//角色朝向
     int goldnum;//现在持有的金币
     int allgoldnum;//总共获得的金币
+    int goldnum_second; //第二关现在持有的金币
     int picnumber;//现在是动画第几帧
     QPixmap picture;
     virtual void left();

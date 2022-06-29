@@ -8,9 +8,9 @@ bullet::bullet(bool direction,int x_,int y_)
     y=y_,is_right=direction;
 
     if(is_right)
-        x=x_+B;
+        x=x_+B0;
     else
-        x=x_-B;
+        x=x_-B0;
 }
 
 void bullet::move()
@@ -27,13 +27,13 @@ void bullet::move()
 
 bool bullet::right_touch()
 {
-    if(map[x/B+1][y/B]!=1&&x + BULLET_MOVE_SPEED < XSIZE - w)
+    if(map[x/B0+1][y/B0]!=1&&x + BULLET_MOVE_SPEED < XSIZE - w)
         return 0;
     return 1;
 }
 bool bullet::left_touch()
 {
-    if(map[(x-5)/B][y/B]!=1&&x - BULLET_MOVE_SPEED > 0)
+    if(map[(x-5)/B0][y/B0]!=1&&x - BULLET_MOVE_SPEED > 0)
         return 0;
     return 1;
 }

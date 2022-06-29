@@ -4,7 +4,7 @@
 #include "stdio.h"
 #include "dialog.h"
 #include "qtimer.h"
-
+#include<cmath>
 extern int map[24][24];
 player::player()
 {
@@ -15,27 +15,27 @@ player::player()
   hittimer=0;
   goldnum = 0;
   allgoldnum=0;
-  picture.load(PLAYER_PIC);
+  picture.load(PLAYER_PIC2);
 }
 bool player::is_ground()
 {
-          if(map[(x+5)/B][(y+H)/B]!=0||map[(x+w-5)/B][(y+H)/B]!=0)
+          if(map[(x+5)/B0][(y+H)/B0]!=0||map[(x+w-5)/B0][(y+H)/B0]!=0)
           {
-              if(map[(x+5)/B][(y+H)/B]==1||map[(x+w-5)/B][(y+H)/B]==1)
+              if(map[(x+5)/B0][(y+H)/B0]==1||map[(x+w-5)/B0][(y+H)/B0]==1)
                 return 1;
           }
       return 0;
 }
 bool player::right_touch(){
-    if(map[x/B+1][y/B]!=1)return 0;
+    if(map[x/B0+1][y/B0]!=1)return 0;
     else return 1;
 }
 bool player::left_touch(){
-    if(map[(x-5)/B][y/B]!=1)return 0;
+    if(map[(x-5)/B0][y/B0]!=1)return 0;
     else return 1;
 }
 bool player::head_touch(){
-   if( map[(x+5)/B][(y)/B]==1||map[(x+w-5)/B][(y)/B]==1)
+   if( map[(x+5)/B0][(y)/B0]==1||map[(x+w-5)/B0][(y)/B0]==1)
        return 1;
    else return 0;
 }
@@ -62,7 +62,7 @@ void player::fall()
       y+=(int)(h1+0.5);
       if(v0>0){
       if(is_ground()){
-           y=y/B*B;
+           y=y/B0*B0;
            v0=0;
            is_jump=0;
       }
@@ -79,26 +79,26 @@ void player::fall()
 }
 bool player::wincheck()//到达id为2的方块时获胜
 {
-    if(map[x/B][y/B]==2||map[(x+W)/B][y/B]==2)return true;
+    if(map[x/B0][y/B0]==2||map[(x+W)/B0][y/B0]==2)return true;
     return false;
 }
 int player::goldcheck()//到达id为3的方块时获取金币
 {
-    if(map[x/B][y/B]==3)
+    if(map[x/B0][y/B0]==3)
     {
-        map[x/B][y/B]=0;
+        map[x/B0][y/B0]=0;
         return 1;
     }
-    else if(map[(x+W-5)/B][y/B]==3)
+    else if(map[(x+W-5)/B0][y/B0]==3)
     {
-        map[(x+W-5)/B][y/B]=0;
+        map[(x+W-5)/B0][y/B0]=0;
         return 1;
     }
     return 0;
 }
 bool player::dicicheck()//到达id为4的方块时,视为站在地刺上，受伤
 {
-    if(map[x/B][y/B]==4||map[(x+W)/B][y/B]==4)return true;
+    if(map[x/B0][y/B0]==4||map[(x+W)/B0][y/B0]==4)return true;
     return false;
 }
 bool player::touch(player mons)
@@ -115,6 +115,7 @@ bool player::touch(player mons)
 }
 void player::injure()
 {
+    qDebug("%dhittimer:",hittimer);
     if(hittimer==0){
         blood-=10;
         hittimer++;
@@ -122,6 +123,7 @@ void player::injure()
 }
 void player::bulletinjure()
 {
+    qDebug("%dhittimer:",hittimer);
     if(hittimer==0){
         blood-=5;
         hittimer++;

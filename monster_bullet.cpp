@@ -17,9 +17,9 @@ void monster_bullet::newbullet()
         {
             biu[i].y=y,biu[i].is_right=is_right;
             if(is_right)
-                biu[i].x=x+B;
+                biu[i].x=x+B0;
             else
-                biu[i].x=x-B;
+                biu[i].x=x-B0;
             biu[i].is_alive=1;
             break;
         }

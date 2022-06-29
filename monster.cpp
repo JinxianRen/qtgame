@@ -6,7 +6,7 @@ extern int map[24][24];
 monster::monster()
 {
     is_right=1;
-    picture.load(MONSTER_PIC);
+    picture.load(MONSTER_PIC2);
 }
 void monster::move()
 {
@@ -22,13 +22,13 @@ void monster::move()
 
 bool monster::right_touch()
 {
-    if(map[x/B+1][y/B]!=1&&map[x/B+1][y/B+1]==1&&x + MONSTER_MOVE_SPEED < XSIZE - w)
+    if(map[x/B0+1][y/B0]!=1&&map[x/B0+1][y/B0+1]==1&&x + MONSTER_MOVE_SPEED < XSIZE - w)
         return 0;
     return 1;
 }
 bool monster::left_touch()
 {
-    if(map[(x-5)/B][y/B]!=1&&map[(x-5)/B][y/B+1]==1&&x - MONSTER_MOVE_SPEED > 0)
+    if(map[(x-5)/B0][y/B0]!=1&&map[(x-5)/B0][y/B0+1]==1&&x - MONSTER_MOVE_SPEED > 0)
         return 0;
     return 1;
 }

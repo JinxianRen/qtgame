@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>mainscreen_second</class>
- <widget name="mainscreen_second" class="QDialog">
+ <widget class="QWidget" name="mainscreen_second">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,8 +11,21 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Form</string>
   </property>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>30</y>
+     <width>80</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>金币商店</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

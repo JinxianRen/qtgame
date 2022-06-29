@@ -15,8 +15,14 @@ class lastwin : public QDialog
     Q_OBJECT
 
 public:
-    explicit lastwin(QWidget *parent = 0);
+    explicit lastwin(int allgold_,double alltime_,QWidget *parent = 0);
     ~lastwin();
+    int allgold;
+    double alltime;
+    void drawgold();
+    QString print;
+    QFont font;
+    QLabel *label1,*label2;
 
 private slots:
     void on_pushButton_clicked();
