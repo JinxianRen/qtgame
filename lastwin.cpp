@@ -26,12 +26,13 @@ lastwin::~lastwin()
 void lastwin::drawgold()
 {
     label2 =new QLabel(this);
-    font.setFamily("SimHei");//字体
+    font.setFamily("Fusion Pixel");//字体
     font.setBold(true);
     font.setPointSize(15);//文字大小
 
-    print="恭喜你通关了!\n""通关用时为：";
+    print="恭喜你通关了!\n\n""通关用时为：";
     print+=QString::number(alltime,'lf',2).append('s');
+    print+="\n";
     print+="\n你共获得的金币为：";
     print+=QString::number(allgold).append('/');
     print+=QString::number(GOLDFIRST+GOLDSECOND);

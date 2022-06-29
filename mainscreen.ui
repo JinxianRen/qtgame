@@ -28,6 +28,9 @@
      <height>40</height>
     </size>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 10pt &quot;Fusion Pixel&quot;;</string>
+   </property>
    <property name="text">
     <string>金币商店</string>
    </property>

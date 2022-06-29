@@ -9,7 +9,6 @@
         <file>res/test.jpg</file>
         <file>res/monster.png</file>
         <file>res/player.png</file>
-        <file>res/3.png</file>
         <file>res/background2.png</file>
         <file>res/stone20.png</file>
         <file>res/stone21.png</file>
@@ -39,5 +38,7 @@
         <file>res/hurt.wav</file>
         <file>res/bgm.wav</file>
         <file>res/win.wav</file>
+        <file>res/Fusion Pixel.otf</file>
+        <file>res/3.png</file>
     </qresource>
 </RCC>

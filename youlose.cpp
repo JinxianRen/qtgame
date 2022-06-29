@@ -32,9 +32,10 @@ void youlose::drawgold()
     {
         print="你输在了第二关！\n";
     }
-
+    print+="\n";
     print+="你共坚持了";
     print+=QString::number(time,'lf',2).append('s');
+    print+="\n";
     print+="\n在本关你获得的金币为：";
     print+=QString::number(allgoldnum).append('/');
     if(guan==1)
@@ -47,7 +48,7 @@ void youlose::drawgold()
     }
   //  label1 =new QLabel(this);
     label2 =new QLabel(this);
-    font.setFamily("SimHei");//字体
+    font.setFamily("Fusion Pixel");//字体
     font.setPointSize(15);//文字大小
     font.setBold(true);
     label2->setText(print);

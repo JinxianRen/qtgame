@@ -43,12 +43,13 @@ void firstwin::on_pushButton_clicked()
 void firstwin::drawgold()
 {
     label2 =new QLabel(this);
-    font.setFamily("SimHei");//字体
+    font.setFamily("Fusion Pixel");//字体
     font.setBold(true);
     font.setPointSize(15);//文字大小
 
-    print="恭喜你通过了第一关!\n""通过第一关的用时为：";
+    print="恭喜你通过了第一关!\n\n""通过第一关的用时为：";
     print+=QString::number(time,'lf',2).append('s');
+    print+="\n";
     print+="\n在第一关你获得的金币为：";
     print+=QString::number(allgoldnum).append('/');
     print+=QString::number(GOLDFIRST);

@@ -27,7 +27,7 @@ void goldbuy::drawgold()
 {
     label1 =new QLabel(this);
     label2 =new QLabel(this);
-    font.setFamily("SimHei");//字体
+    font.setFamily("Fusion Pixel");//字体
     font.setPointSize(10);//文字大小
     label1->setText(QString::number(pl.goldnum));
     label1->setStyleSheet("color: black");

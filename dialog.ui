@@ -39,9 +39,18 @@ image:url(:/res/Background20.png)
      <height>16777215</height>
     </size>
    </property>
+   <property name="font">
+    <font>
+     <family>Fusion Pixel</family>
+     <pointsize>14</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255,255,255);
-font: 14pt &quot;Adobe 黑体 Std R&quot;;
+font: 14pt &quot;Fusion Pixel&quot;;
 background-color: rgb(0,100,150);</string>
    </property>
    <property name="text">
@@ -57,19 +66,38 @@ background-color: rgb(0,100,150);</string>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>250</y>
-     <width>341</width>
-     <height>191</height>
+     <x>80</x>
+     <y>140</y>
+     <width>601</width>
+     <height>371</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Fusion Pixel</family>
+     <pointsize>14</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255,255,255);
-font: 14pt &quot;Adobe 黑体 Std R&quot;;</string>
+font: 14pt &quot;Fusion Pixel&quot;;</string>
    </property>
    <property name="text">
-    <string>TextLabel
-啥也没有我随便写写</string>
+    <string>游戏介绍：
+
+基本操作：按a键往左移动，按b键往右移动，按k键跳跃。
+
+商店物品：第一件物品回复十点血量，消耗1枚金币。
+
+          第二件物品无敌3s，消耗5枚金币。
+
+          第三件物品获得重生机会1次，消耗10枚金币。
+
+游戏目标：躲避怪物攻击和地刺，到达终点。
+</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
