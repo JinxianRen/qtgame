@@ -5,8 +5,8 @@
 #include "mainscreen_second.h"
 #include "dialog.h"
 
-lastwin::lastwin(int allgold_,double alltime_,QWidget *parent) :
-    QDialog(parent),allgold(allgold_),alltime(alltime_),
+lastwin::lastwin(int allgold_,double alltime_,int blood_,QWidget *parent) :
+    QDialog(parent),allgold(allgold_),alltime(alltime_),blood(blood_),
     ui(new Ui::lastwin)
 {
     ui->setupUi(this);
@@ -36,12 +36,36 @@ void lastwin::drawgold()
     print+="\n你共获得的金币为：";
     print+=QString::number(allgold).append('/');
     print+=QString::number(GOLDFIRST+GOLDSECOND);
+    print+="\n";
+    //成就系统
+    printach = "\n恭喜你获得成就——";
+    bool checkif = 0;
+    if(allgold==GOLDFIRST+GOLDSECOND)  //金币收集大师
+    {
+        printach+="金币收集大师 ";
+        checkif=1;
+    }
+    if(alltime<=15.000001)   //速通达人
+    {
+        printach+="速通达人 ";
+        checkif=1;
+    }
+    if(blood==100)  //满血通关
+    {
+        printach+="满血通关 ";
+        checkif=1;
+    }
+    if(checkif==0)
+    {
+        printach = "";
+    }
 
-    label2->setText(print);
+    label2->setText(print+printach);
     label2->setStyleSheet("color: black");
     label2->move(200,200);
     label2->setFont(font);
     label2->show();
+
 }
 
 

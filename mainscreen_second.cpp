@@ -367,7 +367,7 @@ void mainscreen_second::keyReleaseEvent(QKeyEvent* event)//松开按键事件
 
 void mainscreen_second::gamewin()//胜利界面
 {
-    lastwin* win = new lastwin(pl.allgoldnum,nowtime+time1);
+    lastwin* win = new lastwin(pl.allgoldnum,nowtime+time1,pl.blood);
     win->setAttribute(Qt::WA_DeleteOnClose, true);
     win->show();
 }
@@ -383,7 +383,7 @@ void mainscreen_second::on_pushButton_clicked()//金币商店
 
 void mainscreen_second::gamelose()  //失败界面
 {
-    youlose* lose = new youlose(pl.allgoldnum-pl.goldnum_second, nowtime,2);
+    youlose* lose = new youlose(pl.allgoldnum-pl.goldnum_second,nowtime,2);
     lose->setAttribute(Qt::WA_DeleteOnClose, true);
     lose->show();
 }
