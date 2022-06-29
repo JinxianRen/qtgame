@@ -36,6 +36,9 @@ mainscreen_second::mainscreen_second(int nowgold_,int allgold1_,double time1_,QW
     pl.allgoldnum = allgold1_;
     pl.goldnum_second = allgold1_;
     updatenum = 0;
+    goldbgm = new QSoundEffect;
+     goldbgm->setSource(QUrl(GOLD_BGM));
+     goldbgm->setVolume(0.25f);
 }
 
 mainscreen_second::~mainscreen_second()
@@ -101,15 +104,6 @@ void mainscreen_second::gamestart()//主循环
             print += QString::number(pl.goldnum);
             label2->setText(print);
             label2->adjustSize();
-
-            if (begin == true)
-            {
-                updatenum++;
-                nowtime = double(updatenum) / 50;
-                //qDebug() << QString::number(updatenum,10);
-            }
-            if(pl.x>=7*B0&&pl.x<=10*B0&&pl.y>=14*B0&&pl.y<=16*B0)
-                pl.injure();
             for (int i = 0; i < MSTRNUM; i++) {//怪物行为
                 if (mons[i].is_alive) {
                     if (!mons[i].is_ground())
@@ -117,7 +111,10 @@ void mainscreen_second::gamestart()//主循环
                     else
                         mons[i].move();
                     if (pl.touch(mons[i]))
-                        pl.injure();
+                    {
+                        if(pl.injure())
+                            audio.play(2);
+                    }
                 }
             }
             for (int i = 0; i < MSTRNUM_BULLET; i++)
@@ -129,7 +126,10 @@ void mainscreen_second::gamestart()//主循环
                     else
                         mons_bullet[i].move();
                     if (pl.touch(mons_bullet[i]))
-                        pl.injure();
+                    {
+                        if(pl.injure())
+                            audio.play(2);
+                    }
                     if (begin == true && updatenum % BULLET_TIME == 0) //生成子弹
                     {
                         mons_bullet[i].newbullet();
@@ -145,66 +145,93 @@ void mainscreen_second::gamestart()//主循环
                                 if (pl.touch(mons_bullet[i].biu[j]))
                                 {
                                     mons_bullet[i].biu[j].is_alive = 0;
-                                    pl.bulletinjure();
+                                    {
+                                        if(pl.bulletinjure())
+                                            audio.play(2);
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-            if (pl.hittimer != 0)
-                pl.hittimer++;
-            if (pl.hittimer > 20)
-                pl.hittimer = 0;//受伤无敌时间
-            if (!pl.is_ground())
-                pl.is_jump = 1;//运动部分
-            if (pl.is_jump)
-                pl.fall();
-            if (leftpress)
+            if(wintime==0)
             {
-                background.mappositionl();
-                pl.left();
-                if (begin == false)
-                    begin = true;
+                if (begin == true)
+                {
+                    updatenum++;
+                    nowtime = double(updatenum) / 50;
+                    //qDebug() << QString::number(updatenum,10);
+                }
+                if(pl.x>=7*B0&&pl.x<=10*B0&&pl.y>=14*B0&&pl.y<=16*B0)
+                    pl.injure();
+
+                if (pl.hittimer != 0)
+                    pl.hittimer++;
+                if (pl.hittimer > 20)
+                    pl.hittimer = 0;//受伤无敌时间
+                if (!pl.is_ground())
+                    pl.is_jump = 1;//运动部分
+                if (pl.is_jump)
+                    pl.fall();
+                if (leftpress)
+                {
+                    background.mappositionl();
+                    pl.left();
+                    if (begin == false)
+                        begin = true;
+                }
+                if (rightpress)
+                {
+                    background.mappositionr();
+                    pl.right();
+                    if (begin == false)
+                        begin = true;
+                }
+                if (pl.wincheck())//胜利检查
+                {
+                    audio.play(4);
+                    wintime=1;
+                }
+                if (pl.goldcheck() == 1)//金币数获取
+                {
+                    audio.play(1);
+                    pl.goldnum++;
+                    pl.allgoldnum++;
+                    map[pl.x / B0][pl.y / B0] = 0;
+                }
+                if (pl.goldcheck() == 2)//金币数获取
+                {
+                    audio.play(1);
+                    pl.goldnum++;
+                    pl.allgoldnum++;
+                    map[(pl.x + W) / B0][pl.y / B0] = 0;
+                }
+                if (pl.dicicheck())//受伤及死亡
+                {
+                        if(pl.injure())
+                            audio.play(2);
+                }
+                if(pl.blood <= 0){
+                    if(extra_life)extra_life--,pl.blood=100;
+                    else{
+                   gamelose();
+                   close();
+                   Timer.stop();
+                    }
+                }
+                if(wudi_time)wudi_time--;//无敌时间的流逝
             }
-            if (rightpress)
+            else
             {
-                background.mappositionr();
-                pl.right();
-                if (begin == false)
-                    begin = true;
-            }
-            if (pl.wincheck())//胜利检查
-            {
-                gamewin();
-                close();
-                Timer.stop();
-            }
-            if (pl.goldcheck() == 1)//金币数获取
-            {
-                pl.goldnum++;
-                pl.allgoldnum++;
-                map[pl.x / B0][pl.y / B0] = 0;
-            }
-            if (pl.goldcheck() == 2)//金币数获取
-            {
-                pl.goldnum++;
-                pl.allgoldnum++;
-                map[(pl.x + W) / B0][pl.y / B0] = 0;
-            }
-            if (pl.dicicheck())//受伤及死亡
-            {
-                pl.injure();
-            }
-            if(pl.blood <= 0){
-                if(extra_life)extra_life--,pl.blood=100;
-                else{
-               gamelose();
-               close();
-               Timer.stop();
+                wintime++;
+                if(wintime>=100)
+                {
+                    gamewin();
+                    close();
+                    Timer.stop();
                 }
             }
-            if(wudi_time)wudi_time--;//无敌时间的流逝
             update(); //绘制
         });
 }

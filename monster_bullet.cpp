@@ -28,7 +28,7 @@ void monster_bullet::newbullet()
 {
     for(int i=0;i<30;i++)
     {
-        if(biu[i].y==0)
+        if(biu[i].is_alive==0)
         {
             biu[i].y=y,biu[i].is_right=is_right;
             if(is_right)

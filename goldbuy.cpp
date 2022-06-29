@@ -51,6 +51,7 @@ void goldbuy::on_pushButton_2_clicked()
     //假设买它需要花1个金币
     if(pl.goldnum>=1)
     {
+        audio.play(3);
         pl.goldnum-=1;
         label1->close();
         label1->setText(QString::number(pl.goldnum));
@@ -69,6 +70,7 @@ void goldbuy::on_pushButton_3_clicked()
     //无敌的具体实现，可以考虑换算成刷新次数，设置一个值为刷新次数，刷新一次就减一
     if(pl.goldnum>=5)
     {
+        audio.play(3);
         pl.goldnum-=5;
         label1->close();
         label1->setText(QString::number(pl.goldnum));
@@ -81,6 +83,7 @@ void goldbuy::on_pushButton_4_clicked()//假设买它需要花10个金币，买�
 {
     if(pl.goldnum>=10)
     {
+        audio.play(3);
         pl.goldnum-=10;
         label1->close();
         label1->setText(QString::number(pl.goldnum));

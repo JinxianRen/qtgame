@@ -27,6 +27,7 @@ void firstwin::on_pushButton_2_clicked()
 {
     Widget *w = new Widget;
     w->setAttribute(Qt::WA_DeleteOnClose, true);
+    w->music->stop();
     w->show();
     close();
 }

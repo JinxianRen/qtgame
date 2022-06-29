@@ -23,6 +23,7 @@ void Dialog::on_pushButton_clicked()
 {
         close();
        Widget *w = new Widget;
+        w->music->stop();
         w->show();
 }
 
@@ -30,5 +31,6 @@ void Dialog::on_pushButton_2_clicked()
 {
     close();
    Widget *w = new Widget;
+    w->music->stop();
     w->show();
 }

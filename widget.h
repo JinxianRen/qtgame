@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "none.h"
 #include "mainscreen.h"
-
+#include <QSoundEffect>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -16,6 +16,7 @@ class Widget : public QWidget
 
 public:
     Widget(QWidget *parent = nullptr);
+    QSoundEffect *music;
     ~Widget();
 
 private slots:

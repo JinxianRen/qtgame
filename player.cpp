@@ -114,19 +114,25 @@ bool player::touch(player mons)
         return 1;
     return 0;
 }
-void player::injure()
+
+bool player::injure()
 {
     if(hittimer==0&&!wudi_time){
+
         blood-=10;
         hittimer++;
+        return true;
     }
+    return false;
 }
-void player::bulletinjure()
+bool player::bulletinjure()
 {
     if(hittimer==0&&!wudi_time){
         blood-=5;
         hittimer++;
+        return true;
     }
+    return false;
 }
 
 

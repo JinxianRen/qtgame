@@ -14,6 +14,8 @@
 #include <QString>
 #include "config.h"
 #include "monster_bullet.h"
+#include <QSoundEffect>
+#include "audiothread.h"
 
 namespace Ui {
 class mainscreen_second;
@@ -43,6 +45,9 @@ public:
     QLabel *labelblood1,*labelblood2;
     QLabel *labeltime1,*labeltime2;
     QString print,printblood,printtime;
+    QSoundEffect *goldbgm;
+    AudioThread audio;
+    int wintime=0;
     int updatenum=0;
     bool leftpress=0;
     double time=0.000001;

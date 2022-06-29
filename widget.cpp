@@ -12,11 +12,17 @@ Widget::Widget(QWidget *parent)
   int width = 864;
   int height = 576;
   this->setFixedSize(width,height);//设置窗体固定大小
+  music= new QSoundEffect;
+  music->setSource(QUrl(BEGIN_BGM));
+  music->setLoopCount(10);
+  music->setVolume(0.05f);
+  music->play();
 }
 
 Widget::~Widget()
 {
   delete ui;
+
 }
 
 void Widget::on_pushButton_clicked()
@@ -29,6 +35,7 @@ void Widget::on_pushButton_clicked()
 
 void Widget::on_pushButton_3_clicked()
 {
+  music->stop();
   close();
   delete ui;
 }

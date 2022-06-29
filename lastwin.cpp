@@ -56,6 +56,7 @@ void lastwin::on_pushButton_2_clicked()  //返回主菜单
 {
     Widget *w = new Widget;
     w->setAttribute(Qt::WA_DeleteOnClose, true);
+    w->music->stop();
     w->show();
     close();
 }

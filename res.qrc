@@ -33,5 +33,11 @@
         <file>res/Background10.png</file>
         <file>res/Background20.png</file>
         <file>res/Background30.png</file>
+        <file>res/aliez.wav</file>
+        <file>res/buy.wav</file>
+        <file>res/gold_bgm.wav</file>
+        <file>res/hurt.wav</file>
+        <file>res/bgm.wav</file>
+        <file>res/win.wav</file>
     </qresource>
 </RCC>

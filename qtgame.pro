@@ -1,5 +1,6 @@
 QT       += core gui
 QT       += core gui multimedia
+QT       += multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -30,7 +31,8 @@ SOURCES += \
     youlose.cpp \
     lastwin.cpp \
     monster_bullet.cpp \
-    bullet.cpp
+    bullet.cpp \
+    audiothread.cpp
 
 HEADERS += \
     background.h \
@@ -47,7 +49,8 @@ HEADERS += \
     youlose.h \
     lastwin.h \
     monster_bullet.h \
-    bullet.h
+    bullet.h \
+    audiothread.h
 
 FORMS += \
     mainscreen.ui \

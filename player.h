@@ -3,6 +3,8 @@
 
 #include "qpixmap.h"
 #include "qtimer.h"
+#include <QSoundEffect>
+
 class player
 {
 public:
@@ -27,8 +29,8 @@ public:
     virtual void right();
     void jump();
     void fall();
-    void injure();
-    void bulletinjure();
+    bool injure();
+    bool bulletinjure();
     virtual bool left_touch();
     virtual bool right_touch();
     bool touch(player mons);

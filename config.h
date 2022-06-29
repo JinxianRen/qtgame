@@ -4,7 +4,7 @@
 #endif // CONFIG_H
 
 
-#define TITLE "游戏名称"
+#define TITLE "OUR IWANNA"
 
 #define BACK_GROUND1 ":/res/background1.png"
 #define BACK_GROUND2 ":/res/background2.png"
@@ -35,6 +35,12 @@
 #define BLOCK22 ":/res/stone22.png"
 
 #define BLOCKD ":/res/knife.png"     //地刺
+
+#define BEGIN_BGM "qrc:/res/bgm.wav"
+#define GOLD_BGM "qrc:/res/gold_bgm.wav"
+#define HURT_BGM "qrc:/res/hurt.wav"
+#define BUY_BGM "qrc:/res/buy.wav"
+#define WIN_BGM "qrc:/res/win.wav"
 
 #define BG_SPEED 1                 //背景移动速度
 #define GAME_TICK 20               //游戏多少毫秒刷新一次

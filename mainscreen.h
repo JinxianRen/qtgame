@@ -14,6 +14,7 @@
 #include <QString>
 #include "config.h"
 #include "monster_bullet.h"
+#include "audiothread.h"
 
 namespace Ui {
 class mainscreen;
@@ -42,11 +43,13 @@ public:
     QLabel *labelblood1,*labelblood2;
     QLabel *labeltime1,*labeltime2;
     QString print,printblood,printtime;
+    AudioThread audio;
     int updatenum=0;
     bool leftpress=0;
     double time=0.000001;
     bool rightpress=0;
     bool begin=false;
+    int wintime=0;
     void init();
     void Mapinit();
     void gamestart();

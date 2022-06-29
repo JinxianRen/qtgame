@@ -5,6 +5,7 @@
 #include "player.h"
 #include <QLabel>
 #include <QFont>
+#include "audiothread.h"
 
 namespace Ui {
 class goldbuy;
@@ -22,6 +23,7 @@ public:
     void drawgold();
     QFont font;
     QLabel *label1,*label2;
+    AudioThread audio;
 
 private slots:
     void on_pushButton_clicked();

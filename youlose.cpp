@@ -59,7 +59,6 @@ void youlose::drawgold()
 
 void youlose::on_pushButton_clicked()
 {
-
     mainscreen *d = new mainscreen;
     d->setAttribute(Qt::WA_DeleteOnClose, true);
     d->show();
@@ -70,6 +69,7 @@ void youlose::on_pushButton_2_clicked()
 {
     Widget *w = new Widget;
     w->setAttribute(Qt::WA_DeleteOnClose, true);
+    w->music->stop();
     w->show();
     close();
 }
