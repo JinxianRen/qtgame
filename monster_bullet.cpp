@@ -5,9 +5,24 @@ extern int map[24][24];
 monster_bullet::monster_bullet()
 {
     is_right=1;
-    picture.load(MONSTER_BULLET_PIC);
+    picture.load(MONSTER_PIC12);
 }
-
+monster_bullet::monster_bullet(int n)
+{
+    is_right=1;
+    if(n==1)
+    {
+        for(int i=0;i<30;i++)
+            biu[i]=bullet(1);
+        picture.load(MONSTER_PIC12);
+    }
+    if(n==2)
+    {
+        for(int i=0;i<30;i++)
+            biu[i]=bullet(2);
+        picture.load(MONSTER_PIC22);
+    }
+}
 
 void monster_bullet::newbullet()
 {

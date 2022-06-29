@@ -37,7 +37,7 @@ public:
     monster mons[20];
     monster_bullet mons_bullet[20];
     double nowtime=0.000001,time1;
-    QPixmap block1,block2,block3,block4,block5,block6;
+    QPixmap block1,block2,block3,block4,block5,block6,block7;
     QFont font;
     QLabel *label1,*label2;
     QLabel *labelblood1,*labelblood2;

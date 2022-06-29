@@ -9,6 +9,7 @@ class monster_bullet:public monster
 {
 public:
     monster_bullet();
+    monster_bullet(int n);
     //QList<bullet> biu;
     bullet biu[30];
     void newbullet();

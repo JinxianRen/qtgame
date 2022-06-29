@@ -11,8 +11,8 @@ youlose::youlose(int allgoldnum_,double time_,int guan_,QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(TITLE);
     setWindowIcon(QIcon(GAMEICON));
-    int width = 1032;
-    int height = 736;
+    int width = 1024;
+    int height = 576;
     this->setFixedSize(width,height); //设置窗体固定大小
     drawgold();
 }

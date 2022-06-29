@@ -4,13 +4,27 @@ extern int map[24][24];
 
 bullet::bullet(bool direction,int x_,int y_)
 {
-    picture.load(BULLET_PIC);
+
     y=y_,is_right=direction;
 
     if(is_right)
         x=x_+B0;
     else
         x=x_-B0;
+}
+
+bullet::bullet(int n)
+{
+    if(n==1)
+        picture.load(BULLET_PIC);
+    if(n==2)
+        picture.load(BULLET_PIC2);
+    y=0,is_right=1;
+
+    if(is_right)
+        x=0+B0;
+    else
+        x=0-B0;
 }
 
 void bullet::move()

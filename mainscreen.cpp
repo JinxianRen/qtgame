@@ -13,11 +13,16 @@
 #include <QDebug>
 #include <QIcon>
 extern int map[24][24];
-
+int map1[24][24];
 mainscreen::mainscreen(QWidget *parent) : QWidget(parent), ui(new Ui::mainscreen)
 {
   ui->setupUi(this);
   memset(map,0,sizeof(map));
+  background=BackGround(1);
+  for(int i=0;i<MSTRNUM;i++)//初始化第一关怪物
+      mons[i]=monster(1);
+  for(int i=0;i<MSTRNUM_BULLET;i++)
+      mons_bullet[i]=monster_bullet(1);
   setWindowTitle(TITLE);
   setWindowIcon(QIcon(GAMEICON));
   init();
@@ -42,13 +47,20 @@ void mainscreen::init()//初始化
 
 void mainscreen::Mapinit(){//地图初始化
     for(int i=0;i<24;i++)
-    for(int j=23;j>20;j--) map[i][j]=1;
-    for(int i=0;i<17;i++)map[i][19]=1;
-    for(int i=23;i>17;i--)map[i][18]=1;
-    for(int i=7;i<22;i++)map[i][16]=1;
-    for(int i=0;i<14;i++)map[i][13]=1;
-    for(int i=4;i<9;i++)map[i][5]=1;
-    for(int i=0;i<3;i++)map[i][2]=1;
+    for(int j=23;j>20;j--)
+        map[i][j]=1;
+    for(int i=0;i<17;i++)
+        map[i][19]=1;
+    for(int i=23;i>17;i--)
+        map[i][18]=1;
+    for(int i=7;i<22;i++)
+        map[i][16]=1;
+    for(int i=0;i<14;i++)
+        map[i][13]=1;
+    for(int i=4;i<9;i++)
+        map[i][5]=1;
+    for(int i=0;i<3;i++)
+        map[i][2]=1;
 
     map[4][18]=map[20][15]=map[13][14]=map[16][14]=
     map[17][14]=map[18][14]=map[21][14]=map[22][13]=
@@ -63,16 +75,20 @@ void mainscreen::Mapinit(){//地图初始化
     map[14][5]=map[20][5]=map[22][5]=map[12][4]=
     map[13][4]=map[22][4]=map[4][3]=map[5][3]=
     map[11][3]=map[10][2]=map[9][1]=map[9][0]=1;
+    for(int i=0;i<24;i++)
+        for(int j=0;j<24;j++)
+            map1[i][j]=map[i][j];
+    for(int i=0;i<24;i++)
+    for(int j=23;j>21;j--)
+        map1[i][j]=2;
 
     map[1][1]=2;
     map[1][17]=map[10][15]=map[21][15]=map[15][12]=
     map[2][10]=map[11][6]=map[2][4]=map[23][4]=
     map[16][3]=3;
-    map[15][20]=4;
 
     mons[0].is_alive=1,mons[0].x=4*B0,mons[0].y=0;
     mons[1].is_alive=1,mons[1].x=4*B0,mons[1].y=20*B0;
-
     mons_bullet[0].is_alive=1,mons_bullet[0].x=4*B0,mons_bullet[0].y=12*B0;
 }
 
@@ -193,30 +209,35 @@ void mainscreen::gamestart()//主循环
 void mainscreen::paintEvent(QPaintEvent *event) //绘制事件
 {
   QPainter painter(this);
-  painter.drawPixmap(0, 0,XSIZE,YSIZE, background.map1); //绘制背景图
-  painter.drawPixmap(0, 0,XSIZE,YSIZE, background.map2);
-  painter.drawPixmap(0, 0,XSIZE,YSIZE, background.map3);
+  painter.drawPixmap(background.map1_x, 0,XSIZE+5,YSIZE, background.map1); //绘制背景图
+  painter.drawPixmap(background.map2_x, 0,XSIZE+5,YSIZE, background.map2);
+  painter.drawPixmap(background.map3_x, 0,XSIZE+5,YSIZE, background.map3);
   painter.drawPixmap(pl.x, pl.y, W, H, pl.picture); //绘制角色
-  block1.load(BLOCK1);//地图绘制
+  block1.load(BLOCK10);//地图绘制
   block2.load(BLOCK2);
   block3.load(BLOCK3);
   block4.load(BLOCK4);
+  block5.load(BLOCK11);
     for(int i=0;i<24;i++)
         for(int j=0;j<24;j++)
+        {
             switch(map[i][j]){
-            case 1:
-                painter.drawPixmap(i*B0, j*B0,W,W, block1);
-                break;
             case 2:
                 painter.drawPixmap(i*B0, j*B0,W,W, block2);
                 break;
             case 3:
                 painter.drawPixmap(i*B0, j*B0,W,W, block3);
                 break;
-            case 4:
-                painter.drawPixmap(i*B0, j*B0,W,W, block4);
+            }
+            switch(map1[i][j]){
+            case 1:
+                painter.drawPixmap(i*B0, j*B0,W,W, block5);
+                break;
+            case 2:
+                painter.drawPixmap(i*B0, j*B0,W,W, block1);
                 break;
             }
+        }
   for(int i=0;i<MSTRNUM;i++)
   {
       if(mons[i].is_alive)

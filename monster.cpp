@@ -6,7 +6,14 @@ extern int map[24][24];
 monster::monster()
 {
     is_right=1;
-    picture.load(MONSTER_PIC2);
+}
+monster::monster(int n)
+{
+    is_right=1;
+    if(n==1)
+        picture.load(MONSTER_PIC1);
+    if(n==2)
+        picture.load(MONSTER_PIC2);
 }
 void monster::move()
 {

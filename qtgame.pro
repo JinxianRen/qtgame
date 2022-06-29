@@ -71,3 +71,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     res.qrc
 CONFIG += console
+CONFIG += resources_big

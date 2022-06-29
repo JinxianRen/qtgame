@@ -24,6 +24,10 @@ mainscreen_second::mainscreen_second(int nowgold_,int allgold1_,double time1_,QW
     setWindowTitle(TITLE);
     setWindowIcon(QIcon(GAMEICON));
     background=BackGround(2);
+    for(int i = 0;i<MSTRNUM;i++)
+        mons[i]=monster(2);
+    for(int i=0;i<MSTRNUM_BULLET;i++)
+        mons_bullet[i]=monster_bullet(2);
     init();
     gamestart();
     pl.goldnum = nowgold_;
@@ -52,12 +56,13 @@ void mainscreen_second::Mapinit() {//地图初始化
         map[i][21] = 1;
     for (int i = 2; i < 5; i++)
         map[i][18] = 1;
-    for (int i = 7; i < 10; i++)
+    for (int i = 6; i < 11; i++)
         map[i][15] = 1;
-    map[2][2]=map[1][2]=map[3][5]=map[4][10]=map[6][6]=
-            map[9][9]=map[12][6]=map[16][6]=map[15][9]=
-            map[19][9]=map[17][14]=map[21][16]=map[22][4]=
-            map[18][6]=map[12][12]=map[20][6]=1;
+    map[2][2]=map[1][2]=map[2][5]=map[4][10]=map[6][6]=
+    map[9][9]=map[12][6]=map[13][6]=map[14][6]=map[15][6]=
+    map[16][6]=map[15][9]=map[19][9]=map[17][14]=map[21][16]=
+    map[22][4]=map[18][6]=map[12][12]=map[20][6]=1;
+    map[7][14]=map[8][14]=map[9][14]=7;
     for (int i = 0; i < 24; i++)
         for (int j = 0; j < 24; j++)
             if(map[i][j]==1)
@@ -72,10 +77,9 @@ void mainscreen_second::Mapinit() {//地图初始化
         }
     map[1][1] = 2;
     map[2][10] = map[22][3]=map[21][15]=3;
-    map[15][20]=4;
-    mons[0].is_alive = 1, mons[0].x = 4 * B0, mons[0].y = 0;
-
-    mons_bullet[0].is_alive = 1, mons_bullet[0].x = 4 * B0, mons_bullet[0].y = 12 * B0;
+    mons[0].is_alive = 1, mons[0].x = 12 * B0, mons[0].y = 0;
+    mons[1].is_alive=1,mons[1].x=4*B0,mons[1].y=20*B0;
+    mons_bullet[0].is_alive = 1, mons_bullet[0].x = 4 * B0, mons_bullet[0].y = 17 * B0;
 }
 
 void mainscreen_second::gamestart()//主循环
@@ -201,14 +205,17 @@ void mainscreen_second::gamestart()//主循环
 void mainscreen_second::paintEvent(QPaintEvent* event) //绘制事件
 {
     QPainter painter(this);
-    painter.drawPixmap(0, 0, XSIZE, YSIZE, background.map1); //绘制背景图
+    painter.drawPixmap(background.map1_x, 0,XSIZE+5,YSIZE, background.map1); //绘制背景图
+    painter.drawPixmap(background.map2_x, 0,XSIZE+5,YSIZE, background.map2);
+    painter.drawPixmap(background.map3_x, 0,XSIZE+5,YSIZE, background.map3);
     painter.drawPixmap(pl.x, pl.y, W, H, pl.picture); //绘制角色
     block1.load(BLOCK20);//地图绘制
     block2.load(BLOCK2);
-    block3.load(BLOCKFOOD);
+    block3.load(BLOCK3);
     block4.load(BLOCK4);
     block5.load(BLOCK21);
     block6.load(BLOCK22);
+    block7.load(BLOCKD);
     for (int i = 0; i < 24; i++)
         for (int j = 0; j < 24; j++)
         {
@@ -218,6 +225,9 @@ void mainscreen_second::paintEvent(QPaintEvent* event) //绘制事件
                 break;
             case 3:
                 painter.drawPixmap(i * B0, j * B0, W, W, block3);
+                break;
+            case 7:
+                painter.drawPixmap(i * B0, j * B0, W, W, block7);
                 break;
             }
             switch (map2[i][j]) {

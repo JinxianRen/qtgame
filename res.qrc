@@ -1,23 +1,28 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/grass.png</file>
-        <file>res/stone.png</file>
-        <file>res/background.png</file>
         <file>res/jiemian.png</file>
-        <file>res/star.png</file>
         <file>res/gold.png</file>
-        <file>res/test.jpg</file>
-        <file>res/monster.png</file>
-        <file>res/player.png</file>
         <file>res/3.png</file>
         <file>res/background2.png</file>
         <file>res/stone20.png</file>
         <file>res/stone21.png</file>
         <file>res/stone22.png</file>
         <file>res/food.png</file>
-        <file>res/player2.png</file>
         <file>res/monster2.png</file>
         <file>res/1.png</file>
         <file>res/2.png</file>
+        <file>res/stone10.png</file>
+        <file>res/stone11.png</file>
+        <file>res/background1.png</file>
+        <file>res/player1.png</file>
+        <file>res/monster1.png</file>
+        <file>res/monster12.png</file>
+        <file>res/bullet.png</file>
+        <file>res/key.png</file>
+        <file>res/monster22.png</file>
+        <file>res/bullet2.png</file>
+        <file>res/knife.png</file>
+        <file>res/shop.png</file>
+        <file>res/Background10.png</file>
     </qresource>
 </RCC>

@@ -6,6 +6,7 @@ class monster:public player
 {
 public:
     monster();
+    monster(int n);
     virtual void left();
     virtual void right();
     virtual bool right_touch();

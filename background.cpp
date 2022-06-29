@@ -2,9 +2,6 @@
 #include "config.h"
 BackGround::BackGround()
 {
-  map1.load(BACK_GROUND); //设置背景
-  map2.load(BACK_GROUND);
-  map3.load(BACK_GROUND);
   map1_x = XSIZE;
   map2_x = 0;
   map3_x = -XSIZE;
@@ -14,9 +11,9 @@ BackGround::BackGround(int num)
 {
     if(num==1)
     {
-        map1.load(BACK_GROUND); //设置背景
-        map2.load(BACK_GROUND);
-        map3.load(BACK_GROUND);
+        map1.load(BACK_GROUND1); //设置背景
+        map2.load(BACK_GROUND1);
+        map3.load(BACK_GROUND1);
     }
     if(num==2)
     {

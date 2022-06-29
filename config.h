@@ -6,20 +6,26 @@
 
 #define TITLE "游戏名称"
 
-#define BACK_GROUND ":/res/background.png"
+#define BACK_GROUND1 ":/res/background1.png"
 #define BACK_GROUND2 ":/res/background2.png"
 #define PLAYER_PIC ":/res/grass.png"
-
+#define PLAYER_PIC1 ":/res/player1.png"
 #define PLAYER_PIC2 ":/res/player2.png"
 
 #define MONSTER_PIC ":/res/monster.png"
+#define MONSTER_PIC1 ":/res/monster1.png"
+#define MONSTER_PIC12 ":/res/monster12.png"
 #define MONSTER_PIC2 ":/res/monster2.png"
+#define MONSTER_PIC22 ":/res/monster22.png"
 
 #define MONSTER_BULLET_PIC ":/res/monster.png"
-#define BULLET_PIC ":/res/monster.png"
-#define GAMEICON ":/res/stone.png"
-#define BLOCK1 ":/res/stone.png"
-#define BLOCK2 ":/res/star.png"
+#define BULLET_PIC ":/res/bullet.png"
+#define BULLET_PIC2 ":/res/bullet2.png"
+#define GAMEICON ":/res/key.png"
+#define BLOCK10 ":/res/stone10.png"
+#define BLOCK11 ":/res/stone11.png"
+
+#define BLOCK2 ":/res/key.png"
 #define BLOCKFOOD ":/res/food.png"
 #define BLOCK3 ":/res/gold.png"
 #define BLOCK4 ":/res/player.png"
@@ -27,6 +33,8 @@
 #define BLOCK20 ":/res/stone20.png"
 #define BLOCK21 ":/res/stone21.png"
 #define BLOCK22 ":/res/stone22.png"
+
+#define BLOCKD ":/res/knife.png"     //地刺
 
 #define BG_SPEED 1                 //背景移动速度
 #define GAME_TICK 20               //游戏多少毫秒刷新一次

@@ -15,7 +15,7 @@ player::player()
   hittimer=0;
   goldnum = 0;
   allgoldnum=0;
-  picture.load(PLAYER_PIC2);
+  picture.load(PLAYER_PIC1);
 }
 bool player::is_ground()
 {
@@ -96,9 +96,9 @@ int player::goldcheck()//到达id为3的方块时获取金币
     }
     return 0;
 }
-bool player::dicicheck()//到达id为4的方块时,视为站在地刺上，受伤
+bool player::dicicheck()//到达id为7的方块时,视为站在地刺上，受伤
 {
-    if(map[x/B0][y/B0]==4||map[(x+W)/B0][y/B0]==4)return true;
+    if(map[x/B0][y/B0]==7||map[(x+W)/B0][y/B0]==7)return true;
     return false;
 }
 bool player::touch(player mons)
@@ -115,7 +115,6 @@ bool player::touch(player mons)
 }
 void player::injure()
 {
-    qDebug("%dhittimer:",hittimer);
     if(hittimer==0){
         blood-=10;
         hittimer++;
@@ -123,7 +122,6 @@ void player::injure()
 }
 void player::bulletinjure()
 {
-    qDebug("%dhittimer:",hittimer);
     if(hittimer==0){
         blood-=5;
         hittimer++;
