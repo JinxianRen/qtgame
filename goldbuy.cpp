@@ -1,7 +1,8 @@
 #include "goldbuy.h"
 #include "ui_goldbuy.h"
 #include "mainscreen.h"
-
+extern int wudi_time;
+int extra_life;
 goldbuy::goldbuy(player& play,QWidget *parent) :
     QDialog(parent),pl(play),
     ui(new Ui::goldbuy)
@@ -72,14 +73,20 @@ void goldbuy::on_pushButton_3_clicked()
         label1->close();
         label1->setText(QString::number(pl.goldnum));
         label1->show();
-
-
+        wudi_time+=150;
     }
 }
 
-void goldbuy::on_pushButton_4_clicked()
+void goldbuy::on_pushButton_4_clicked()//假设买它需要花10个金币，买了可以获得一次重生机会
 {
-    //假设买它需要花10个金币，买了可以获得一次重生机会
+    if(pl.goldnum>=10)
+    {
+        pl.goldnum-=10;
+        label1->close();
+        label1->setText(QString::number(pl.goldnum));
+        label1->show();
+        extra_life++;
+    }
 
 }
 

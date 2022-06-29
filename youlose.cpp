@@ -11,8 +11,8 @@ youlose::youlose(int allgoldnum_,double time_,int guan_,QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(TITLE);
     setWindowIcon(QIcon(GAMEICON));
-    int width = 1024;
-    int height = 576;
+    int width = 768;
+    int height = 768;
     this->setFixedSize(width,height); //设置窗体固定大小
     drawgold();
 }
@@ -48,10 +48,11 @@ void youlose::drawgold()
   //  label1 =new QLabel(this);
     label2 =new QLabel(this);
     font.setFamily("SimHei");//字体
-    font.setPointSize(10);//文字大小
+    font.setPointSize(15);//文字大小
+    font.setBold(true);
     label2->setText(print);
     label2->setStyleSheet("color: black");
-    label2->move(320,220);
+    label2->move(200,200);
     label2->setFont(font);
     label2->show();
 }

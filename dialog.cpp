@@ -9,8 +9,8 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(TITLE);
     setWindowIcon(QIcon(GAMEICON));
-    int width = 1032;
-    int height = 736;
+    int width = 768;
+    int height = 768;
     this->setFixedSize(width,height); //设置窗体固定大小
 }
 

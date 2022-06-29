@@ -6,6 +6,7 @@
 #include "qtimer.h"
 #include<cmath>
 extern int map[24][24];
+int wudi_time;
 player::player()
 {
   x = X, y = Y, h = H, w = W;
@@ -115,14 +116,14 @@ bool player::touch(player mons)
 }
 void player::injure()
 {
-    if(hittimer==0){
+    if(hittimer==0&&!wudi_time){
         blood-=10;
         hittimer++;
     }
 }
 void player::bulletinjure()
 {
-    if(hittimer==0){
+    if(hittimer==0&&!wudi_time){
         blood-=5;
         hittimer++;
     }

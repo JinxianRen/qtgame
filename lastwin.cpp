@@ -12,8 +12,8 @@ lastwin::lastwin(int allgold_,double alltime_,QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(TITLE);
     setWindowIcon(QIcon(GAMEICON));
-    int width = 1024;
-    int height = 576;
+    int width = 768;
+    int height = 768;
     this->setFixedSize(width,height); //设置窗体固定大小
     drawgold();
 }
@@ -27,7 +27,8 @@ void lastwin::drawgold()
 {
     label2 =new QLabel(this);
     font.setFamily("SimHei");//字体
-    font.setPointSize(10);//文字大小
+    font.setBold(true);
+    font.setPointSize(15);//文字大小
 
     print="恭喜你通关了!\n""通关用时为：";
     print+=QString::number(alltime,'lf',2).append('s');
@@ -37,7 +38,7 @@ void lastwin::drawgold()
 
     label2->setText(print);
     label2->setStyleSheet("color: black");
-    label2->move(320,220);
+    label2->move(200,200);
     label2->setFont(font);
     label2->show();
 }

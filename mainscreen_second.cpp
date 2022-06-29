@@ -14,6 +14,8 @@
 
 extern int map[24][24];
 int map2[24][24];
+extern int wudi_time;
+extern int extra_life;
 mainscreen_second::mainscreen_second(int nowgold_,int allgold1_,double time1_,QWidget *parent) :
     QWidget(parent),time1(time1_),
     ui(new Ui::mainscreen_second)
@@ -59,9 +61,9 @@ void mainscreen_second::Mapinit() {//地图初始化
     for (int i = 6; i < 11; i++)
         map[i][15] = 1;
     map[2][2]=map[1][2]=map[2][5]=map[4][10]=map[6][6]=
-    map[9][9]=map[12][6]=map[13][6]=map[14][6]=map[15][6]=
-    map[16][6]=map[15][9]=map[19][9]=map[17][14]=map[21][16]=
-    map[22][4]=map[18][6]=map[12][12]=map[20][6]=1;
+            map[9][9]=map[12][6]=map[13][6]=map[14][6]=map[15][6]=map[16][6]=map[15][9]=
+            map[19][9]=map[17][14]=map[21][16]=map[22][4]=
+            map[18][6]=map[12][12]=map[20][6]=1;
     map[7][14]=map[8][14]=map[9][14]=7;
     for (int i = 0; i < 24; i++)
         for (int j = 0; j < 24; j++)
@@ -106,6 +108,8 @@ void mainscreen_second::gamestart()//主循环
                 nowtime = double(updatenum) / 50;
                 //qDebug() << QString::number(updatenum,10);
             }
+            if(pl.x>=7*B0&&pl.x<=10*B0&&pl.y>=14*B0&&pl.y<=16*B0)
+                pl.injure();
             for (int i = 0; i < MSTRNUM; i++) {//怪物行为
                 if (mons[i].is_alive) {
                     if (!mons[i].is_ground())
@@ -192,12 +196,15 @@ void mainscreen_second::gamestart()//主循环
             {
                 pl.injure();
             }
-            if (pl.blood <= 0)
-            {
-                gamelose();
-                close();
-                Timer.stop();
+            if(pl.blood <= 0){
+                if(extra_life)extra_life--,pl.blood=100;
+                else{
+               gamelose();
+               close();
+               Timer.stop();
+                }
             }
+            if(wudi_time)wudi_time--;//无敌时间的流逝
             update(); //绘制
         });
 }

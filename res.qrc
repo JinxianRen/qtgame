@@ -1,7 +1,14 @@
 <RCC>
     <qresource prefix="/">
+        <file>res/grass.png</file>
+        <file>res/stone.png</file>
+        <file>res/background.png</file>
         <file>res/jiemian.png</file>
+        <file>res/star.png</file>
         <file>res/gold.png</file>
+        <file>res/test.jpg</file>
+        <file>res/monster.png</file>
+        <file>res/player.png</file>
         <file>res/3.png</file>
         <file>res/background2.png</file>
         <file>res/stone20.png</file>
@@ -24,5 +31,7 @@
         <file>res/knife.png</file>
         <file>res/shop.png</file>
         <file>res/Background10.png</file>
+        <file>res/Background20.png</file>
+        <file>res/Background30.png</file>
     </qresource>
 </RCC>

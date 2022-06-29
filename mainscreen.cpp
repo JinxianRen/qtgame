@@ -14,6 +14,8 @@
 #include <QIcon>
 extern int map[24][24];
 int map1[24][24];
+extern int wudi_time;
+extern int extra_life;
 mainscreen::mainscreen(QWidget *parent) : QWidget(parent), ui(new Ui::mainscreen)
 {
   ui->setupUi(this);
@@ -196,12 +198,15 @@ void mainscreen::gamestart()//主循环
               {
                    pl.injure();
               }
-            if(pl.blood <= 0)
-                        {
+            if(pl.blood <= 0){
+                if(extra_life)extra_life--,pl.blood=100;
+                else{
                gamelose();
                close();
                Timer.stop();
-                        }
+                }
+            }
+            if(wudi_time)wudi_time--;//无敌时间的流逝
         update(); //绘制
   });
 }
